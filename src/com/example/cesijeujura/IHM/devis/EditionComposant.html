@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;PAPER_WIDTH&quot;:621,&quot;PAPER_HEIGHT&quot;:306,&quot;PAPER_SCROLL_LEFT&quot;:2168,&quot;PAPER_SCROLL_TOP&quot;:2313,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;cesijeujura&quot;}">
+ </head> 
+ <body> 
+  <v-vertical-layout size-full="true"> 
+   <v-label plain-text="" _id="titleLabel">
+     Edition des composants 
+   </v-label> 
+   <v-horizontal-layout size-full="true" _id="composantsLayout" :expand=""> 
+    <v-table size-full="true" _id="composantTable" :expand=""></v-table> 
+    <v-vertical-layout size-auto="true" _id="buttonLayout"> 
+     <v-button width="230px" plain-text="" _id="addButton">
+       Ajouter un composant 
+     </v-button> 
+     <v-button width="230px" plain-text="" _id="deleteButton">
+       Supprimer un composant 
+     </v-button> 
+    </v-vertical-layout> 
+   </v-horizontal-layout> 
+   <v-horizontal-layout width-full="true" _id="closeLayout"> 
+    <v-button plain-text="" _id="closeButton" :bottom="" :right="">
+      Fermer 
+    </v-button> 
+   </v-horizontal-layout> 
+  </v-vertical-layout>  
+ </body>
+</html>

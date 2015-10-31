@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;PAPER_WIDTH&quot;:621,&quot;PAPER_HEIGHT&quot;:238,&quot;PAPER_SCROLL_LEFT&quot;:2156,&quot;PAPER_SCROLL_TOP&quot;:2347,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;cesijeujura&quot;}">
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;PAPER_WIDTH&quot;:621,&quot;PAPER_HEIGHT&quot;:238,&quot;PAPER_SCROLL_LEFT&quot;:2160,&quot;PAPER_SCROLL_TOP&quot;:2347,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;cesijeujura&quot;}">
  </head> 
  <body> 
   <v-vertical-layout size-full="true"> 
@@ -23,7 +23,7 @@
     <tab caption="Importation fichiers" selected="true"> 
      <v-horizontal-layout size-full="true" _id="filesHLayout"> 
       <v-table size-full="true" _id="filesTable" :expand=""></v-table> 
-      <v-vertical-layout size-auto="true"> 
+      <v-vertical-layout size-auto="true" _id="buttonLayout"> 
        <v-button width="110px" plain-text="" _id="addButton">
          Ajouter 
        </v-button> 
@@ -45,17 +45,17 @@
    <v-grid-layout _id="buttonsGLayout" :right=""> 
     <row> 
      <column> 
-      <v-button plain-text="" _id="traiterButton" :middle="" :right="">
+      <v-button plain-text="" _id="traiterButton">
         Traiter 
       </v-button> 
      </column> 
      <column> 
-      <v-button plain-text="" _id="saveButton" :middle="" :right="">
+      <v-button plain-text="" _id="saveButton">
         Enregistrer 
       </v-button> 
      </column> 
      <column> 
-      <v-button plain-text="" _id="quitButton" :middle="" :right="">
+      <v-button plain-text="" _id="quitButton">
         Quitter 
       </v-button> 
      </column> 

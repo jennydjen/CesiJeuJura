@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;PAPER_WIDTH&quot;:588,&quot;PAPER_HEIGHT&quot;:306,&quot;PAPER_SCROLL_LEFT&quot;:2172,&quot;PAPER_SCROLL_TOP&quot;:2313,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;cesijeujura&quot;}">
+ </head> 
+ <body> 
+  <v-vertical-layout size-full="true"> 
+   <v-label height="25px" plain-text="" _id="titleLabel">
+     Gestion des devis 
+   </v-label> 
+   <v-horizontal-layout width-full="true" _id="layout"> 
+    <v-vertical-layout _id="searchLayout" :expand=""> 
+     <v-label size-auto="true" plain-text="" _id="searchAdvanceLabel">
+       Recherche avanc�e 
+     </v-label> 
+     <v-grid-layout _id="searchAdvanceLayout"> 
+      <row> 
+       <column> 
+        <v-label size-auto="true" plain-text="" _id="clientLabel">
+          Client 
+        </v-label> 
+       </column> 
+       <column> 
+        <v-combo-box item-caption-mode="id" _id="clientCombo"> 
+         <option>Option 1</option> 
+         <option>Option 2</option> 
+         <option>Option 3</option> 
+        </v-combo-box> 
+       </column> 
+       <column> 
+        <v-label size-auto="true" plain-text="" _id="etatLabel">
+          Etat 
+        </v-label> 
+       </column> 
+       <column> 
+        <v-combo-box item-caption-mode="id" _id="etatCombo"> 
+         <option>Option 1</option> 
+         <option>Option 2</option> 
+         <option>Option 3</option> 
+        </v-combo-box> 
+       </column> 
+      </row> 
+     </v-grid-layout> 
+    </v-vertical-layout> 
+    <v-button width="120px" plain-text="" _id="createButton">
+      Cr�er projet 
+    </v-button> 
+   </v-horizontal-layout> 
+   <v-horizontal-layout size-full="true" _id="devisLayout" :expand=""> 
+    <v-table size-full="true" _id="devisTable" :expand=""></v-table> 
+    <v-vertical-layout size-auto="true" _id="buttonLayout"> 
+     <v-button width="120px" plain-text="" _id="openButton">
+       Ouvrir 
+     </v-button> 
+     <v-button width="120px" plain-text="" _id="modifButton">
+       Modifier 
+     </v-button> 
+     <v-button width="120px" plain-text="" _id="validateButton">
+       Valider 
+     </v-button> 
+     <v-button width="120px" plain-text="" _id="deleteButton">
+       Supprimer 
+     </v-button> 
+    </v-vertical-layout> 
+   </v-horizontal-layout> 
+  </v-vertical-layout>  
+ </body>
+</html>
