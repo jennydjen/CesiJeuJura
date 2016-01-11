@@ -4,8 +4,8 @@
   <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;cesijeujura&quot;}">
  </head> 
  <body> 
-  <vaadin-vertical-layout size-full="true"> 
-   <vaadin-horizontal-layout width-full="true" _id="referenceHLayout"> 
+  <vaadin-vertical-layout height="511px" margin="true"> 
+   <vaadin-horizontal-layout spacing="true" width-full="true" _id="referenceHLayout"> 
     <vaadin-horizontal-layout caption="Devis" _id="devisHLayout"> 
      <vaadin-label size-auto="true" plain-text="" _id="referenceDevisLabel">
        R�f�rence 
@@ -21,9 +21,9 @@
    </vaadin-horizontal-layout> 
    <vaadin-tab-sheet size-full="true" _id="traitementSheet" :bottom="" :center="" :expand=""> 
     <tab caption="Importation fichiers" selected="true"> 
-     <vaadin-horizontal-layout size-full="true" _id="filesHLayout"> 
+     <vaadin-horizontal-layout spacing="true" size-full="true" _id="filesHLayout"> 
       <vaadin-table size-full="true" _id="filesTable" :expand=""></vaadin-table> 
-      <vaadin-vertical-layout size-auto="true" _id="buttonLayout"> 
+      <vaadin-vertical-layout spacing="true" size-auto="true" margin-left="true" _id="buttonLayout"> 
        <vaadin-button width="110px" plain-text="" _id="addButton">
          Ajouter 
        </vaadin-button> 
@@ -42,7 +42,7 @@
      </vaadin-horizontal-layout> 
     </tab> 
    </vaadin-tab-sheet> 
-   <vaadin-grid-layout _id="buttonsGLayout" :right=""> 
+   <vaadin-grid-layout spacing="true" height="46px" margin-top="true" margin-bottom="true" _id="buttonsGLayout" :right=""> 
     <row> 
      <column> 
       <vaadin-button plain-text="" _id="traiterButton">
