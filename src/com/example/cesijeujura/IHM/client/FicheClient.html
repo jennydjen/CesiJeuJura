@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;PAPER_WIDTH&quot;:568,&quot;PAPER_HEIGHT&quot;:306,&quot;PAPER_SCROLL_LEFT&quot;:2182,&quot;PAPER_SCROLL_TOP&quot;:2313,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;cesijeujura&quot;}">
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:true,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;GRID_TYPE&quot;:&quot;RegularGrid,20&quot;,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;valo&quot;}">
  </head> 
  <body> 
-  <v-vertical-layout size-full="true"> 
-   <v-label size-auto="true" plain-text="" _id="titleLabel">
+  <vaadin-vertical-layout height="620px"> 
+   <vaadin-label width-auto="true" height="30px" plain-text="" _id="titleLabel">
      Client : NOM Prenom 
-   </v-label> 
-   <v-panel caption="Identit?" _id="identityPanel"> 
-    <v-vertical-layout _id="identiteLayout"> 
-     <v-horizontal-layout _id="nameLayout"> 
-      <v-combo-box enabled="false" item-caption-mode="id" width="180px" _id="civiliteCombo"> 
+   </vaadin-label> 
+   <vaadin-panel caption="Identit?" _id="identityPanel"> 
+    <vaadin-vertical-layout height="256px" _id="identiteLayout"> 
+     <vaadin-horizontal-layout spacing="true" height="62px" _id="nameLayout"> 
+      <vaadin-combo-box caption="Civilité" description="test" enabled="false" item-caption-mode="id" width="81px" height="37px" _id="civiliteCombo"> 
        <option>Monsieur</option> 
        <option>Madame</option> 
        <option>Mademoiselle</option> 
-      </v-combo-box> 
-      <v-text-field enabled="false" width="180px" _id="nameField"></v-text-field> 
-      <v-text-field enabled="false" width="180px" _id="firstNameField"></v-text-field> 
-      <v-text-field enabled="false" width="180px" _id="referenceField"></v-text-field> 
-     </v-horizontal-layout> 
-     <v-horizontal-layout _id="adresseLayout"> 
-      <v-text-field enabled="false" width="300px" _id="adresseField"></v-text-field> 
-      <v-text-field enabled="false" width="100px" _id="codePostalField"></v-text-field> 
-      <v-text-field enabled="false" width="180px" _id="villeField"></v-text-field> 
-     </v-horizontal-layout> 
-     <v-horizontal-layout _id="contactLayout"> 
-      <v-text-field enabled="false" width="300px" _id="mailField"></v-text-field> 
-      <v-text-field enabled="false" width="180px" _id="phoneField"></v-text-field> 
-     </v-horizontal-layout> 
-    </v-vertical-layout> 
-   </v-panel> 
-   <v-table size-full="true" _id="devisTable" :expand=""></v-table> 
-   <v-horizontal-layout _id="buttonLayout" :bottom="" :right=""> 
-    <v-button enabled="false" plain-text="" _id="seeDevisButton">
+      </vaadin-combo-box> 
+      <vaadin-text-field description="Nom" caption="Nom" enabled="false" width="137px" _id="nameField"></vaadin-text-field> 
+      <vaadin-text-field caption="Prénom" enabled="false" width="146px" _id="firstNameField"></vaadin-text-field> 
+      <vaadin-text-field caption="Num reference" enabled="false" width="180px" _id="referenceField"></vaadin-text-field> 
+     </vaadin-horizontal-layout> 
+     <vaadin-horizontal-layout spacing="true" height="60px" _id="adresseLayout"> 
+      <vaadin-text-field caption="Adresse postal" enabled="false" width="233px" _id="adresseField"></vaadin-text-field> 
+      <vaadin-text-field caption="Code postal" enabled="false" width="146px" _id="codePostalField"></vaadin-text-field> 
+      <vaadin-text-field caption="Ville" enabled="false" width="88px" _id="villeField"></vaadin-text-field> 
+     </vaadin-horizontal-layout> 
+     <vaadin-horizontal-layout spacing="true" height="62px" _id="contactLayout"> 
+      <vaadin-text-field caption="Adresse mail" enabled="false" width="389px" _id="mailField"></vaadin-text-field> 
+      <vaadin-text-field caption="Téléphone" enabled="false" width="180px" _id="phoneField"></vaadin-text-field> 
+     </vaadin-horizontal-layout> 
+    </vaadin-vertical-layout> 
+   </vaadin-panel> 
+   <vaadin-table width-full="true" height="253px" :expand=""></vaadin-table> 
+   <vaadin-horizontal-layout height="37px" _id="buttonLayout" :right=""> 
+    <vaadin-button plain-text="" _id="seeDevisButton" :right="">
       Voir devis 
-    </v-button> 
-   </v-horizontal-layout> 
-  </v-vertical-layout>  
+    </vaadin-button> 
+   </vaadin-horizontal-layout> 
+  </vaadin-vertical-layout>  
  </body>
 </html>

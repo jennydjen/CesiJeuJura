@@ -7,7 +7,6 @@ import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.declarative.Design;
@@ -39,7 +38,6 @@ public class FicheClient extends VerticalLayout {
 	protected HorizontalLayout contactLayout;
 	protected TextField mailField;
 	protected TextField phoneField;
-	protected Table devisTable;
 	protected HorizontalLayout buttonLayout;
 	protected Button seeDevisButton;
 
