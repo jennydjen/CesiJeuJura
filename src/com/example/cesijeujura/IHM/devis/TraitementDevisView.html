@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;PAPER_WIDTH&quot;:621,&quot;PAPER_HEIGHT&quot;:238,&quot;PAPER_SCROLL_LEFT&quot;:2160,&quot;PAPER_SCROLL_TOP&quot;:2347,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;cesijeujura&quot;}">
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src&quot;,&quot;THEME&quot;:&quot;cesijeujura&quot;}">
  </head> 
  <body> 
-  <v-vertical-layout size-full="true"> 
-   <v-horizontal-layout width-full="true" _id="referenceHLayout"> 
-    <v-horizontal-layout caption="Devis" _id="devisHLayout"> 
-     <v-label size-auto="true" plain-text="" _id="referenceDevisLabel">
+  <vaadin-vertical-layout size-full="true"> 
+   <vaadin-horizontal-layout width-full="true" _id="referenceHLayout"> 
+    <vaadin-horizontal-layout caption="Devis" _id="devisHLayout"> 
+     <vaadin-label size-auto="true" plain-text="" _id="referenceDevisLabel">
        R�f�rence 
-     </v-label> 
-     <v-text-field enabled="false" _id="referenceDevisTF"></v-text-field> 
-    </v-horizontal-layout> 
-    <v-horizontal-layout caption="Client" _id="clientHLayout"> 
-     <v-label size-auto="true" plain-text="" _id="referenceClientLabel">
+     </vaadin-label> 
+     <vaadin-text-field enabled="false" _id="referenceDevisTF"></vaadin-text-field> 
+    </vaadin-horizontal-layout> 
+    <vaadin-horizontal-layout caption="Client" _id="clientHLayout"> 
+     <vaadin-label size-auto="true" plain-text="" _id="referenceClientLabel">
        R�f�rence 
-     </v-label> 
-     <v-text-field enabled="false" _id="referenceClientTF"></v-text-field> 
-    </v-horizontal-layout> 
-   </v-horizontal-layout> 
-   <v-tab-sheet size-full="true" _id="traitementSheet" :bottom="" :center="" :expand=""> 
+     </vaadin-label> 
+     <vaadin-text-field enabled="false" _id="referenceClientTF"></vaadin-text-field> 
+    </vaadin-horizontal-layout> 
+   </vaadin-horizontal-layout> 
+   <vaadin-tab-sheet size-full="true" _id="traitementSheet" :bottom="" :center="" :expand=""> 
     <tab caption="Importation fichiers" selected="true"> 
-     <v-horizontal-layout size-full="true" _id="filesHLayout"> 
-      <v-table size-full="true" _id="filesTable" :expand=""></v-table> 
-      <v-vertical-layout size-auto="true" _id="buttonLayout"> 
-       <v-button width="110px" plain-text="" _id="addButton">
+     <vaadin-horizontal-layout size-full="true" _id="filesHLayout"> 
+      <vaadin-table size-full="true" _id="filesTable" :expand=""></vaadin-table> 
+      <vaadin-vertical-layout size-auto="true" _id="buttonLayout"> 
+       <vaadin-button width="110px" plain-text="" _id="addButton">
          Ajouter 
-       </v-button> 
-       <v-button width="110px" plain-text="" _id="deleteButton">
+       </vaadin-button> 
+       <vaadin-button width="110px" plain-text="" _id="deleteButton">
          Supprimer 
-       </v-button> 
-      </v-vertical-layout> 
-     </v-horizontal-layout> 
+       </vaadin-button> 
+      </vaadin-vertical-layout> 
+     </vaadin-horizontal-layout> 
     </tab> 
     <tab caption="Chiffrage"> 
-     <v-horizontal-layout size-full="true" _id="chiffrageHLayout"> 
-      <v-table width-full="true" _id="modulesTable" :expand=""></v-table> 
-      <v-button plain-text="" _id="editerCompButton">
+     <vaadin-horizontal-layout size-full="true" _id="chiffrageHLayout"> 
+      <vaadin-table width-full="true" _id="modulesTable" :expand=""></vaadin-table> 
+      <vaadin-button plain-text="" _id="editerCompButton">
         Editer composants 
-      </v-button> 
-     </v-horizontal-layout> 
+      </vaadin-button> 
+     </vaadin-horizontal-layout> 
     </tab> 
-   </v-tab-sheet> 
-   <v-grid-layout _id="buttonsGLayout" :right=""> 
+   </vaadin-tab-sheet> 
+   <vaadin-grid-layout _id="buttonsGLayout" :right=""> 
     <row> 
      <column> 
-      <v-button plain-text="" _id="traiterButton">
+      <vaadin-button plain-text="" _id="traiterButton">
         Traiter 
-      </v-button> 
+      </vaadin-button> 
      </column> 
      <column> 
-      <v-button plain-text="" _id="saveButton">
+      <vaadin-button plain-text="" _id="saveButton">
         Enregistrer 
-      </v-button> 
+      </vaadin-button> 
      </column> 
      <column> 
-      <v-button plain-text="" _id="quitButton">
+      <vaadin-button plain-text="" _id="quitButton">
         Quitter 
-      </v-button> 
+      </vaadin-button> 
      </column> 
     </row> 
-   </v-grid-layout> 
-  </v-vertical-layout>  
+   </vaadin-grid-layout> 
+  </vaadin-vertical-layout>  
  </body>
 </html>

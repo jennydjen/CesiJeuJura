@@ -3,6 +3,7 @@ package com.example.cesijeujura;
 import javax.servlet.annotation.WebServlet;
 
 import com.example.cesijeujura.IHM.MenuView;
+import com.example.cesijeujura.IHM.client.FicheClient;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.cdi.CDIUI;
@@ -26,7 +27,7 @@ public class CesijeujuraUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		final VerticalLayout layout = new MenuView();
+		final VerticalLayout layout = new FicheClient();
 		//layout.setMargin(true);
 		setContent(layout);
 
