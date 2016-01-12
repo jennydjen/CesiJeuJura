@@ -27,7 +27,7 @@ public class CesijeujuraUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		final VerticalLayout layout = new FicheClient();
+		final VerticalLayout layout = new MenuView();
 		//layout.setMargin(true);
 		setContent(layout);
 
