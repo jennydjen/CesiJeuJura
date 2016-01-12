@@ -25,7 +25,7 @@ import com.vaadin.ui.declarative.Design;
 @SuppressWarnings("serial")
 public class TraitementDevisView extends VerticalLayout {
 	protected HorizontalLayout referenceHLayout;
-	protected HorizontalLayout devisHLayout;
+	protected HorizontalLayout devisLblLayout;
 	protected Label referenceDevisLabel;
 	protected TextField referenceDevisTF;
 	protected HorizontalLayout clientHLayout;
