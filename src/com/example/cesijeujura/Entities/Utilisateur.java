@@ -19,6 +19,7 @@ public class Utilisateur {
 	private String prenom;
 	private String tel;
 	private String mail;
+	private String password;
 	
 	@ManyToMany
 	private List<Droit> droits;
@@ -64,6 +65,14 @@ public class Utilisateur {
 
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	public List<Droit> getDroits() {
