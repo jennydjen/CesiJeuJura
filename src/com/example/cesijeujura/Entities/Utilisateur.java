@@ -7,9 +7,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries(value = {
+		@NamedQuery(name = "user.isUserExist", query ="Select c from Utilisateur c where c.login = ?1 and c.password = ?2"),
+		@NamedQuery(name = "user.isMailUserExist", query ="Select c from Utilisateur c where c.mail = ?1")
+}
+)
 public class Utilisateur {
 
 	@Id
@@ -66,7 +73,7 @@ public class Utilisateur {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	
+		
 	public String getPassword() {
 		return password;
 	}

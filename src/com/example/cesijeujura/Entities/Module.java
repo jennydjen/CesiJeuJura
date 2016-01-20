@@ -7,8 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries(value = {
+		@NamedQuery(name = "module.findAll", query = "Select c from Module c")
+}
+)
 public class Module {
 
 	@Id

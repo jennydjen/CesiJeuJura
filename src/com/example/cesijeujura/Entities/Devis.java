@@ -8,9 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries(value = {
+		@NamedQuery(name = "devis.findAll", query = "Select c from Devis c"),
+		@NamedQuery(name = "devis.findDevisByStatuts", query ="Select c from Devis c where c.etat = ?1"),
+		@NamedQuery(name = "devis.findDevisByClient", query ="Select c from Devis c where c.projet.client = ?1")
+}
+)
 public class Devis {
 
 	@Id
