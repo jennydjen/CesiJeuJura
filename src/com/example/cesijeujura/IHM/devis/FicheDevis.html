@@ -6,37 +6,37 @@
   <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;THEME&quot;:&quot;cesijeujura&quot;}">
  </head> 
  <body> 
-  <v-vertical-layout> 
-   <v-horizontal-layout> 
-    <v-vertical-layout spacing="true" size-auto="true" margin="true"> 
-     <v-horizontal-layout spacing="true"> 
-      <v-text-field caption="Nom du projet" _id="projectName"></v-text-field> 
-      <v-text-field caption="Num Client" _id="clientNum" :right=""></v-text-field> 
-     </v-horizontal-layout> 
-     <v-horizontal-layout spacing="true"> 
-      <v-combo-box item-caption-mode="id" _id="typePiece"> 
+  <vaadin-vertical-layout> 
+   <vaadin-horizontal-layout> 
+    <vaadin-vertical-layout spacing="true" size-auto="true" margin="true"> 
+     <vaadin-horizontal-layout spacing="true"> 
+      <vaadin-text-field caption="Nom du projet" _id="projectName"></vaadin-text-field> 
+      <vaadin-text-field caption="Num Client" _id="clientNum" :right=""></vaadin-text-field> 
+     </vaadin-horizontal-layout> 
+     <vaadin-horizontal-layout spacing="true"> 
+      <vaadin-combo-box item-caption-mode="id" _id="typePiece"> 
        <option>Option 1</option> 
        <option>Option 2</option> 
        <option>Option 3</option> 
-      </v-combo-box> 
-      <v-button plain-text="" _id="btnAjout">
+      </vaadin-combo-box> 
+      <vaadin-button plain-text="" _id="btnAjout">
         Ajouter 
-      </v-button> 
-     </v-horizontal-layout> 
-     <v-horizontal-layout width="496px" height="303px"> 
-      <v-table size-full="true" _id="tabItem"></v-table> 
-     </v-horizontal-layout> 
-    </v-vertical-layout> 
-    <v-vertical-layout spacing="true" size-auto="true" margin="true"> 
-     <v-menu-bar caption="Etat projet" plain-text="" _id="etatProjet"></v-menu-bar> 
-     <v-date-field caption="Date lancement du projet" _id="dateLancement" :right=""></v-date-field> 
-     <v-date-field caption="Date Pré-devis" _id="datePreDevis" :right=""></v-date-field> 
-     <v-date-field caption="Date devis" _id="dateDevis" :right=""></v-date-field> 
-     <v-button plain-text="" _id="btnFicheClient" :bottom="" :right="">
+      </vaadin-button> 
+     </vaadin-horizontal-layout> 
+     <vaadin-horizontal-layout width="496px" height="303px"> 
+      <vaadin-table size-full="true" _id="tabItem"></vaadin-table> 
+     </vaadin-horizontal-layout> 
+    </vaadin-vertical-layout> 
+    <vaadin-vertical-layout spacing="true" size-auto="true" margin="true"> 
+     <vaadin-menu-bar caption="Etat projet" plain-text="" _id="etatProjet"></vaadin-menu-bar> 
+     <vaadin-date-field caption="Date lancement du projet" _id="dateLancement" :right=""></vaadin-date-field> 
+     <vaadin-date-field caption="Date Pré-devis" _id="datePreDevis" :right=""></vaadin-date-field> 
+     <vaadin-date-field caption="Date devis" _id="dateDevis" :right=""></vaadin-date-field> 
+     <vaadin-button plain-text="" _id="btnFicheClient" :bottom="" :right="">
        Voir fiche du client 
-     </v-button> 
-    </v-vertical-layout> 
-   </v-horizontal-layout> 
-  </v-vertical-layout>  
+     </vaadin-button> 
+    </vaadin-vertical-layout> 
+   </vaadin-horizontal-layout> 
+  </vaadin-vertical-layout>  
  </body>
 </html>
