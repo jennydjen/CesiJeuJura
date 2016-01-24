@@ -50,4 +50,11 @@
 		<nature>org.jboss.tools.cdi.core.cdinature</nature>
 		<nature>com.vaadin.integration.eclipse.widgetsetNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>BDD/cesijeujura(2).sql</name>
+			<type>1</type>
+			<location>C:/Users/Ecole/Downloads/cesijeujura(2).sql</location>
+		</link>
+	</linkedResources>
 </projectDescription>
