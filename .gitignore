@@ -1,8 +1,6 @@
 /build/
 .classpath
-<<<<<<< HEAD
 /bin/
-=======
 /.settings/
 
 *.class
@@ -69,4 +67,3 @@ local.properties
  
 # PDT-specific
 .buildpath
->>>>>>> branch 'master' of https://github.com/jennydjen/ProjetCoiffeur.git
