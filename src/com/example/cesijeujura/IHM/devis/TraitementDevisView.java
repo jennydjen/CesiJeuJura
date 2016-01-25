@@ -14,6 +14,7 @@ import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 import com.vaadin.ui.declarative.Design;
 
 /** 
@@ -57,10 +58,9 @@ public class TraitementDevisView extends VerticalLayout {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				
-				 PopupView sample = new PopupView(new PopupSave());
-				 
-				 
-				
+				 PopupSave popup = new PopupSave();
+				 getUI().addWindow(popup);
+				 popup.setVisible(true);				
 			}
 	    });
 		
