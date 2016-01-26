@@ -39,10 +39,10 @@ public class UserDAO implements UserIDAO{
 	}
 
 	@Override
-	public boolean isUserExist(String login, String password) {
+	public boolean isUserExist(String mail, String password) {
 		// TODO Auto-generated method stub
 		TypedQuery<Utilisateur> query = em.createNamedQuery("user.isUserExist", Utilisateur.class);
-		query.setParameter(1, login);
+		query.setParameter(1, mail);
 		query.setParameter(2, password);
 		
 		return query.getResultList().size() >=1;

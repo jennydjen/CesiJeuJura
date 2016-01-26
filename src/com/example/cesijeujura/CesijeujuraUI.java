@@ -1,7 +1,9 @@
 package com.example.cesijeujura;
 
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 
+import com.example.cesijeujura.IEJB.DevisIEJB;
 import com.example.cesijeujura.IHM.MenuView;
 import com.example.cesijeujura.IHM.client.FicheClient;
 import com.vaadin.annotations.Theme;
@@ -20,6 +22,9 @@ import com.vaadin.ui.VerticalLayout;
 @CDIUI("")
 public class CesijeujuraUI extends UI {
 
+	@Inject
+	private DevisIEJB devisEJB;
+	
 	/*@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = CesijeujuraUI.class)
 	public static class Servlet extends VaadinServlet {
@@ -27,7 +32,7 @@ public class CesijeujuraUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		final VerticalLayout layout = new MenuView();
+		final VerticalLayout layout = new MenuView(devisEJB);
 		//layout.setMargin(true);
 		setContent(layout);
 

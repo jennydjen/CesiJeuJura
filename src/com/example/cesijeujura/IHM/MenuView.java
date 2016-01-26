@@ -1,5 +1,6 @@
 package com.example.cesijeujura.IHM;
 
+import com.example.cesijeujura.IEJB.DevisIEJB;
 import com.example.cesijeujura.IHM.client.FicheClient;
 import com.example.cesijeujura.IHM.devis.EditionComposant;
 import com.example.cesijeujura.IHM.devis.FicheDevis;
@@ -29,9 +30,11 @@ import com.vaadin.ui.MenuBar.MenuItem;
 public class MenuView extends VerticalLayout {
 	protected MenuBar menuBar;
 	protected VerticalLayout contenu;
-
-	public MenuView() {
+	
+	public MenuView(final DevisIEJB devisEJB) {
 		Design.read(this);
+		
+		
 		
 		MenuBar.Command clients = new Command() {
 			@Override
@@ -45,7 +48,7 @@ public class MenuView extends VerticalLayout {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 				contenu.removeAllComponents();
-				contenu.addComponent(new ListeDevis());
+				contenu.addComponent(new ListeDevis(devisEJB));
 				
 			}
 		};

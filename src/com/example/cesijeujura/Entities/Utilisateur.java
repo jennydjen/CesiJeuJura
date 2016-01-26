@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries(value = {
-		@NamedQuery(name = "user.isUserExist", query ="Select c from Utilisateur c where c.login = ?1 and c.password = ?2"),
+		@NamedQuery(name = "user.isUserExist", query ="Select c from Utilisateur c where c.mail = ?1 and c.password = ?2"),
 		@NamedQuery(name = "user.isMailUserExist", query ="Select c from Utilisateur c where c.mail = ?1")
 }
 )
