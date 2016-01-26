@@ -4,13 +4,14 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.example.cesijeujura.Entities.Utilisateur;
+import com.example.cesijeujura.IDAO.UserIDAO;
 import com.example.cesijeujura.IEJB.UserIEJB;
 
 @Stateless
 public class UserEJB implements UserIEJB{
 	
 	@Inject
-	private UserIEJB userDAO;
+	private UserIDAO userDAO;
 	
 	@Override
 	public Utilisateur create(Utilisateur t) {

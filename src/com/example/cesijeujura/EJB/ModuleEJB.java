@@ -6,14 +6,16 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 
+
 import com.example.cesijeujura.Entities.Module;
+import com.example.cesijeujura.IDAO.ModuleIDAO;
 import com.example.cesijeujura.IEJB.ModuleIEJB;
 
 @Stateless
 public class ModuleEJB implements ModuleIEJB{
 	
 	@Inject
-	private ModuleIEJB moduleDAO;
+	private ModuleIDAO moduleDAO;
 	
 	@Override
 	public Module create(Module t) {
