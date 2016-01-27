@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -21,12 +22,14 @@ public class Projet {
 	private String forme;
 	private int hauteur;
 	private int nbEtage;
-	private String commentaire;
+	private String com;
 	private String maquette;
 	
 	@ManyToOne
+	@JoinColumn(name="fk_idcommercial")
 	private Utilisateur commercial;
 	@ManyToOne
+	@JoinColumn(name="fk_idclient")
 	private Client client;
 	@OneToMany(mappedBy="projet")
 	private List<Piece> pieces;
@@ -90,11 +93,11 @@ public class Projet {
 	}
 
 	public String getCommentaire() {
-		return commentaire;
+		return com;
 	}
 
 	public void setCommentaire(String commentaire) {
-		this.commentaire = commentaire;
+		this.com = commentaire;
 	}
 
 	public String getMaquette() {

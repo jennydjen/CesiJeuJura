@@ -1,8 +1,12 @@
 package com.example.cesijeujura.Entities;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries(value = {
@@ -20,14 +26,23 @@ import javax.persistence.OneToMany;
 		@NamedQuery(name = "devis.findDevisByClient", query ="Select c from Devis c where c.projet.client = ?1")
 }
 )
-public class Devis {
+public class Devis implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String ref;
-	private String etat;
+	@Enumerated(EnumType.STRING)
+	private Etat etat;
 	private Double prix;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date_creation;
 
 	@OneToMany(mappedBy="devis")
 	private List<Fichier> fichiers;
@@ -40,7 +55,7 @@ public class Devis {
 	private Projet projet;
 
 	public Devis() {
-
+		date_creation = new Date();
 	}
 
 	public int getId() {
@@ -55,11 +70,11 @@ public class Devis {
 		this.ref = ref;
 	}
 
-	public String getEtat() {
+	public Etat getEtat() {
 		return etat;
 	}
 
-	public void setEtat(String etat) {
+	public void setEtat(Etat etat) {
 		this.etat = etat;
 	}
 
@@ -89,6 +104,14 @@ public class Devis {
 
 	public List<Main_Oeuvre> getMainsoeuvre() {
 		return mainsoeuvre;
+	}
+	
+	public Date getDateCreation() {
+		return date_creation;
+	}
+	
+	public void setDateCreation(Date date_creation) {
+		this.date_creation = date_creation;
 	}
 	
 	@Override
