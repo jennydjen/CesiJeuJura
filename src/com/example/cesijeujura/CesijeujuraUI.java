@@ -1,19 +1,15 @@
 package com.example.cesijeujura;
 
 import javax.inject.Inject;
-import javax.servlet.annotation.WebServlet;
 
+import com.example.cesijeujura.IEJB.ClientIEJB;
 import com.example.cesijeujura.IEJB.DevisIEJB;
+import com.example.cesijeujura.IEJB.ModuleIEJB;
+import com.example.cesijeujura.IEJB.UserIEJB;
 import com.example.cesijeujura.IHM.MenuView;
-import com.example.cesijeujura.IHM.client.FicheClient;
 import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.cdi.CDIUI;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
@@ -25,6 +21,15 @@ public class CesijeujuraUI extends UI {
 	@Inject
 	private DevisIEJB devisEJB;
 	
+	@Inject
+	private ClientIEJB clientEJB;
+	
+	@Inject
+	private ModuleIEJB moduleEJB;
+	
+	@Inject
+	private UserIEJB userEJB;
+	
 	/*@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = CesijeujuraUI.class)
 	public static class Servlet extends VaadinServlet {
@@ -32,7 +37,7 @@ public class CesijeujuraUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		final VerticalLayout layout = new MenuView(devisEJB);
+		final VerticalLayout layout = new MenuView(devisEJB, clientEJB, moduleEJB, userEJB);
 		//layout.setMargin(true);
 		setContent(layout);
 
