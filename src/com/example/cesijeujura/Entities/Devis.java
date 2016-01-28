@@ -23,7 +23,6 @@ import javax.persistence.TemporalType;
 @NamedQueries(value = {
 		@NamedQuery(name = "devis.findAll", query = "Select c from Devis c"),
 		@NamedQuery(name = "devis.findDevisByStatuts", query ="Select c from Devis c where c.etat = ?1"),
-		@NamedQuery(name = "devis.findDevisByClient", query ="Select c from Devis c where c.projet.client = ?1")
 }
 )
 public class Devis implements Serializable {
