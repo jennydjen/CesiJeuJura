@@ -156,6 +156,29 @@ public class ListeDevis extends VerticalLayout {
 			row1.getItemProperty("Etat").setValue(d.getEtat().toString());
 			row1.getItemProperty("Date").setValue(d.getDateCreation());
 		}
+
+		openButton.setEnabled(false);
+		modifButton.setEnabled(false);
+		validateButton.setEnabled(false);
+		deleteButton.setEnabled(false);
+
+		devisTable.addValueChangeListener(new ValueChangeListener() {
+
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				if (devisTable.getValue() != null) {
+					openButton.setEnabled(true);
+					modifButton.setEnabled(true);
+					validateButton.setEnabled(true);
+					deleteButton.setEnabled(true);
+				} else {
+					openButton.setEnabled(false);
+					modifButton.setEnabled(false);
+					validateButton.setEnabled(false);
+					deleteButton.setEnabled(false);
+				}
+			}
+		});
 	}
 
 	private void initialiseDevis() {
@@ -163,7 +186,7 @@ public class ListeDevis extends VerticalLayout {
 		Client client = (Client) clientCombo.getValue();
 
 		List<Devis> devis = devisEJB.findDevisByFiltre(client, etat);
-		
+
 		devisTable.removeAllItems();
 		for (Devis d : devis) {
 			Object newItemId = devisTable.addItem();
