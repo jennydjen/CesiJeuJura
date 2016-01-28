@@ -24,9 +24,10 @@ public class Client {
 	private String mail;
 	private String ville;
 	private String tel;
-	private int ref;
-	
-	@OneToMany(mappedBy="client")
+	private String ref;
+	private int civilite;
+
+	@OneToMany(mappedBy = "client")
 	private List<Projet> projets;
 
 	public Client() {
@@ -93,18 +94,26 @@ public class Client {
 		this.tel = tel;
 	}
 
-	public int getRef() {
+	public String getRef() {
 		return ref;
 	}
 
-	public void setRef(int ref) {
+	public void setRef(String ref) {
 		this.ref = ref;
 	}
-	
+
 	public List<Projet> getProjets() {
 		return projets;
 	}
-	
+
+	public int getCivilite() {
+		return civilite;
+	}
+
+	public void setCivilite(int civilite) {
+		this.civilite = civilite;
+	}
+
 	@Override
 	public String toString() {
 		return nom.toUpperCase() + " " + prenom;

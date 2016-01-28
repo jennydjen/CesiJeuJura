@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `MAIL` varchar(100) NOT NULL,
   `TEL` varchar(15) NOT NULL,
   `REF` varchar(10) NOT NULL,
+  `CIVILITE` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
