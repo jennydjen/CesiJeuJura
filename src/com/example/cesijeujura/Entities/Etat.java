@@ -1,7 +1,7 @@
 package com.example.cesijeujura.Entities;
 
 public enum Etat {
-	CREER, A_TRAITER, VALIDATION_BUREAU, DEVIS;
+	CREER, A_TRAITER, VALIDATION_BUREAU, DEVIS, ANNULE;
 	
 	@Override
 	public String toString() {
@@ -20,6 +20,8 @@ public enum Etat {
 		case DEVIS:
 			result = "Devis";
 			break;
+		case ANNULE:
+			result = "Annulé";
 		}
 
 		return result;
