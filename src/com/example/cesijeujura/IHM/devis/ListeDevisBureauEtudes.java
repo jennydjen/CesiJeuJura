@@ -43,7 +43,7 @@ public class ListeDevisBureauEtudes extends VerticalLayout {
 		try{
 			tabDevis.setSizeFull();
 			tabDevis.setSelectable(true);
-			tabDevis.setImmediate(true);
+			//tabDevis.setImmediate(true);
 			tabDevis.addContainerProperty("Ref", String.class, "");
 			tabDevis.addContainerProperty("Client", Client.class, "");
 			tabDevis.addContainerProperty("Etat", String.class, "");
