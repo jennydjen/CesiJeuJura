@@ -88,7 +88,7 @@ public class MenuView extends VerticalLayout {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 				contenu.removeAllComponents();
-				contenu.addComponent(new ListeDevisBureauEtudes());
+				contenu.addComponent(new ListeDevisBureauEtudes(devisEJB));
 			}
 		};
 		
