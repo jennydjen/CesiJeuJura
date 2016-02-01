@@ -1,5 +1,9 @@
 package com.example.cesijeujura.IHM;
 
+import com.example.cesijeujura.IEJB.ClientIEJB;
+import com.example.cesijeujura.IEJB.DevisIEJB;
+import com.example.cesijeujura.IEJB.ModuleIEJB;
+import com.example.cesijeujura.IEJB.UserIEJB;
 import com.example.cesijeujura.IHM.client.FicheClient;
 import com.example.cesijeujura.IHM.devis.EditionComposant;
 import com.example.cesijeujura.IHM.devis.FicheDevis;
@@ -29,10 +33,10 @@ import com.vaadin.ui.MenuBar.MenuItem;
 public class MenuView extends VerticalLayout {
 	protected MenuBar menuBar;
 	protected VerticalLayout contenu;
-
-	public MenuView() {
+	
+	public MenuView(final DevisIEJB devisEJB, final ClientIEJB clientEJB, final ModuleIEJB moduleEJB, final UserIEJB userEJB) {
 		Design.read(this);
-		
+				
 		MenuBar.Command clients = new Command() {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
@@ -45,7 +49,7 @@ public class MenuView extends VerticalLayout {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 				contenu.removeAllComponents();
-				contenu.addComponent(new ListeDevis());
+				contenu.addComponent(new ListeDevis(devisEJB, clientEJB));
 				
 			}
 		};
@@ -54,7 +58,7 @@ public class MenuView extends VerticalLayout {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 				contenu.removeAllComponents();
-				contenu.addComponent(new FicheClient());
+				contenu.addComponent(new FicheClient(devisEJB, clientEJB.find(1)));
 			}
 		};
 		
@@ -75,16 +79,18 @@ public class MenuView extends VerticalLayout {
 		};
 		MenuBar.Command ficheDevis = new Command() {
 			@Override
+			
 			public void menuSelected(MenuItem selectedItem) {
+				int id=0;
 				contenu.removeAllComponents();
-				contenu.addComponent(new FicheDevis());
+				contenu.addComponent(new FicheDevis(devisEJB, id));
 			}
 		};
 		MenuBar.Command listeDevisBureau = new Command() {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 				contenu.removeAllComponents();
-				contenu.addComponent(new ListeDevisBureauEtudes());
+				contenu.addComponent(new ListeDevisBureauEtudes(devisEJB));
 			}
 		};
 		

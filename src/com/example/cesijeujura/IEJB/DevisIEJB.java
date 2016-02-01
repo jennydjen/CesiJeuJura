@@ -1,4 +1,4 @@
-package com.example.cesijeujura.IDAO;
+package com.example.cesijeujura.IEJB;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.Entities.Devis;
 import com.example.cesijeujura.Entities.Etat;
 
-public interface DevisIDAO extends GenericIDAO<Devis>{
+public interface DevisIEJB extends GenericEJBInterface<Devis>{
 
 	public List<Devis> findDevisByStatuts(Etat etat);
 	
