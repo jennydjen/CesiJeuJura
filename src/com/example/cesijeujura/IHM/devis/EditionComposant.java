@@ -78,13 +78,13 @@ public class EditionComposant extends VerticalLayout {
 				composantTable.setSelectable(true);
 
 				composantTable.addContainerProperty("Composant", String.class, "");
-				composantTable.addContainerProperty("Nombre", Double.class, "");
+				composantTable.addContainerProperty("Nombre", Integer.class, Integer.MIN_VALUE);
 
 				for (Composant c : composant) {
 					Object newItemId = composantTable.addItem();
 					Item row1 = composantTable.getItem(newItemId);
 					row1.getItemProperty("Composant").setValue(c.getNom());
-					row1.getItemProperty("Nombre").setValue(c.getModules().get(1).getNb());
+					row1.getItemProperty("Nombre").setValue(c.getModules().get(0).getNb());
 				}
 
 	}

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -12,11 +13,13 @@ public class Quantite_Composant_Module {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int nb;
+	private int quantite;
 
 	@ManyToOne
+	@JoinColumn(name="id_composant")
 	private Composant composant;
 	@ManyToOne
+	@JoinColumn(name="id_module")
 	private Module module;
 
 	public Quantite_Composant_Module() {
@@ -28,11 +31,11 @@ public class Quantite_Composant_Module {
 	}
 
 	public int getNb() {
-		return nb;
+		return quantite;
 	}
 
 	public void setNb(int nb) {
-		this.nb = nb;
+		this.quantite = nb;
 	}
 
 	public Composant getComposant() {

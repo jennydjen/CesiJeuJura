@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries(value = {
@@ -22,7 +23,7 @@ public class Module {
 	private int id;
 	private String nom;
 	
-	@ManyToMany
+	@OneToMany(mappedBy="module")
 	private List<Quantite_Composant_Module>  composants;
 	@ManyToMany
 	private List<Gamme> gammes;
