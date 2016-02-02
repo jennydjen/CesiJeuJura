@@ -45,8 +45,8 @@ public class Devis implements Serializable {
 
 	@OneToMany(mappedBy="devis")
 	private List<Fichier> fichiers;
-	@ManyToMany
-	private List<Gamme> gammes;
+	@OneToMany(mappedBy="devis")
+	private List<Devis_gamme> gammes;
 	@ManyToMany
 	private List<Main_Oeuvre> mainsoeuvre;
 	@ManyToOne
@@ -97,7 +97,7 @@ public class Devis implements Serializable {
 		return fichiers;
 	}
 
-	public List<Gamme> getGammes() {
+	public List<Devis_gamme> getGammes() {
 		return gammes;
 	}
 

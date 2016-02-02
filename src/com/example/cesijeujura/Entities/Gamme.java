@@ -17,8 +17,8 @@ public class Gamme {
 	private int id;
 	private String nom;
 	
-	@ManyToMany
-	private List<Devis> devis;
+	@OneToMany(mappedBy="gamme")
+	private List<Devis_gamme> devis;
 	@OneToMany(mappedBy="gamme")
 	private List<Gamme_module> modules;
 	
@@ -38,7 +38,7 @@ public class Gamme {
 		this.nom = nom;
 	}
 	
-	public List<Devis> getDevis() {
+	public List<Devis_gamme> getDevis() {
 		return devis;
 	}
 	
