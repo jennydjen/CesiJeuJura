@@ -3,6 +3,7 @@ package com.example.cesijeujura.IHM.devis;
 import java.util.Date;
 import java.util.List;
 
+import com.example.cesijeujura.EJB.ComposantEJB;
 import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.Entities.Composant;
 import com.example.cesijeujura.Entities.Devis;
@@ -47,9 +48,9 @@ public class EditionComposant extends VerticalLayout {
 	protected Button closeButton;
 
 
-	private ComposantIEJB composantEJB;
+	//private ComposantIEJB composantEJB;
 	
-	public EditionComposant(DevisIEJB devisEJB) {
+	public EditionComposant(DevisIEJB devisEJB, ComposantIEJB composantEJB) {
 		Design.read(this);
 		addButton.setEnabled(true);
 		addButton.addClickListener(new Button.ClickListener() {
@@ -71,31 +72,20 @@ public class EditionComposant extends VerticalLayout {
 			}
 		});
 		
-		/*
-		// Initialisation de la comboBox des composants
-		List<Composant> composants = composantEJB.findAllComposant();
-		composantCombo.removeAllItems();
-		if (composants.size() > 0) {
-			for (Composant c : composants) {
-				composantCombo.addItem(c);
-			}
-		}
 
-		composantCombo.addValueChangeListener(new ValueChangeListener() {
-
-			@Override
-			public void valueChange(ValueChangeEvent event) {
-				//initialiseComposant();
-			}
-		});
-		 	*/
+		List<Composant> composant = composantEJB.findAllComposant();
 				composantTable.setSizeFull();
 				composantTable.setSelectable(true);
 
 				composantTable.addContainerProperty("Composant", String.class, "");
 				composantTable.addContainerProperty("Nombre", Double.class, "");
 
-
+				for (Composant c : composant) {
+					Object newItemId = composantTable.addItem();
+					Item row1 = composantTable.getItem(newItemId);
+					row1.getItemProperty("Composant").setValue(c.getNom());
+					row1.getItemProperty("Nombre").setValue(c.getModules().get(1).getNb());
+				}
 
 	}
 }

@@ -3,6 +3,7 @@ package com.example.cesijeujura;
 import javax.inject.Inject;
 
 import com.example.cesijeujura.IEJB.ClientIEJB;
+import com.example.cesijeujura.IEJB.ComposantIEJB;
 import com.example.cesijeujura.IEJB.DevisIEJB;
 import com.example.cesijeujura.IEJB.ModuleIEJB;
 import com.example.cesijeujura.IEJB.UserIEJB;
@@ -30,6 +31,9 @@ public class CesijeujuraUI extends UI {
 	@Inject
 	private UserIEJB userEJB;
 	
+	@Inject
+	private ComposantIEJB composantEJB;
+	
 	/*@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = CesijeujuraUI.class)
 	public static class Servlet extends VaadinServlet {
@@ -37,7 +41,7 @@ public class CesijeujuraUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		final VerticalLayout layout = new MenuView(devisEJB, clientEJB, moduleEJB, userEJB);
+		final VerticalLayout layout = new MenuView(devisEJB, clientEJB, moduleEJB, userEJB, composantEJB);
 		//layout.setMargin(true);
 		setContent(layout);
 

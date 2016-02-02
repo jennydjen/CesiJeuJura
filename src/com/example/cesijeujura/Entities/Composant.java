@@ -11,7 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-@NamedQueries(value = { @NamedQuery(name = "composant.findAll", query = "Select c from Compoosant c"), })
+@NamedQueries(value = { @NamedQuery(name = "composant.findAll", query = "Select c from Composant c"), })
 public class Composant {
 
 	@Id

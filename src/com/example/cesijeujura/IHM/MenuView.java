@@ -1,6 +1,7 @@
 package com.example.cesijeujura.IHM;
 
 import com.example.cesijeujura.IEJB.ClientIEJB;
+import com.example.cesijeujura.IEJB.ComposantIEJB;
 import com.example.cesijeujura.IEJB.DevisIEJB;
 import com.example.cesijeujura.IEJB.ModuleIEJB;
 import com.example.cesijeujura.IEJB.UserIEJB;
@@ -34,7 +35,7 @@ public class MenuView extends VerticalLayout {
 	protected MenuBar menuBar;
 	protected VerticalLayout contenu;
 	
-	public MenuView(final DevisIEJB devisEJB, final ClientIEJB clientEJB, final ModuleIEJB moduleEJB, final UserIEJB userEJB) {
+	public MenuView(final DevisIEJB devisEJB, final ClientIEJB clientEJB, final ModuleIEJB moduleEJB, final UserIEJB userEJB , final ComposantIEJB composantEJB) {
 		Design.read(this);
 				
 		MenuBar.Command clients = new Command() {
@@ -66,7 +67,7 @@ public class MenuView extends VerticalLayout {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 				contenu.removeAllComponents();
-				contenu.addComponent(new EditionComposant(devisEJB));
+				contenu.addComponent(new EditionComposant(devisEJB, composantEJB));
 			}
 		};		
 		

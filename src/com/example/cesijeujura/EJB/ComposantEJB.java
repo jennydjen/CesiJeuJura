@@ -42,7 +42,7 @@ public class ComposantEJB implements ComposantIEJB{
 	}
 
 	@Override
-	public List<Composant> findAllComposant() {
+	public  List<Composant> findAllComposant() {
 		// TODO Auto-generated method stub
 		return composantDAO.findAllComposant();
 	}
