@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Gamme {
@@ -18,8 +19,8 @@ public class Gamme {
 	
 	@ManyToMany
 	private List<Devis> devis;
-	@ManyToMany
-	private List<Module> modules;
+	@OneToMany(mappedBy="gamme")
+	private List<Gamme_module> modules;
 	
 	public Gamme() {
 
@@ -41,7 +42,7 @@ public class Gamme {
 		return devis;
 	}
 	
-	public List<Module> getModules() {
+	public List<Gamme_module> getModules() {
 		return modules;
 	}
 	
