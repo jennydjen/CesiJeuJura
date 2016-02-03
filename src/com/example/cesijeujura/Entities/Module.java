@@ -52,4 +52,12 @@ public class Module {
 	public String toString() {
 		return nom;
 	}
+	
+	public Float getPrixModule(){
+		Float resultat = 0F;
+		for (Quantite_Composant_Module q : composants){
+			resultat += q.getNb() * q.getComposant().getPrix();
+		}
+		return resultat;
+	}
 }

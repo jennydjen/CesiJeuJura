@@ -75,7 +75,7 @@ public class MenuView extends VerticalLayout {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 				contenu.removeAllComponents();
-				contenu.addComponent(new TraitementDevisView());
+				contenu.addComponent(new TraitementDevisView(moduleEJB));
 			}
 		};
 		MenuBar.Command ficheDevis = new Command() {

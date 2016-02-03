@@ -18,6 +18,7 @@ public class Composant {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nom;
+	private Float prix;
 
 	@OneToMany(mappedBy = "composant")
 	private List<Quantite_Composant_Module> modules;
@@ -33,9 +34,17 @@ public class Composant {
 	public String getNom() {
 		return nom;
 	}
+	
+	public Float getPrix() {
+		return prix;
+	}
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public void setPrix(Float prix) {
+		this.prix = prix;
 	}
 
 	public List<Quantite_Composant_Module> getModules() {
