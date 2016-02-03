@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
 
 @Entity
 @NamedQueries(value = { @NamedQuery(name = "module.findAll", query = "Select c from Module c") })
@@ -19,7 +20,7 @@ public class Module {
 	private int id;
 	private String nom;
 
-	@OneToMany(mappedBy = "module")
+	@OneToMany(mappedBy = "module", cascade=CascadeType.ALL)
 	private List<Quantite_Composant_Module> composants;
 	@OneToMany(mappedBy = "module")
 	private List<Gamme_module> gammes;
