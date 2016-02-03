@@ -62,9 +62,6 @@ public class ComposantDAO implements ComposantIDAO {
 				result.add(c);
 			}
 		}
-
 		return result;
 	}
-
-
 }

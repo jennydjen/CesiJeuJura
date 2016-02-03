@@ -1,5 +1,6 @@
 package com.example.cesijeujura.Entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,7 @@ public class Quantite_Composant_Module {
 	private int id;
 	private int quantite;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_composant")
 	private Composant composant;
 	@ManyToOne
