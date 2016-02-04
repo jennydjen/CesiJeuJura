@@ -38,11 +38,12 @@ public class ListeDevisBureauEtudes extends VerticalLayout {
 	protected Button btnModif;
 	protected Button btnValider;
 	protected Button btnSupprimer;
-	
+	String refSelected ="";
 
+	@SuppressWarnings("unchecked")
 	public ListeDevisBureauEtudes(DevisIEJB devisEJB) {
  		Design.read(this);
-		List<Devis> devis = devisEJB.findAllDevis();
+		List<Devis> listDevis = devisEJB.findAllDevis();
 		try{
 			tabDevis.setSizeFull();
 			tabDevis.setSelectable(true);
@@ -55,7 +56,7 @@ public class ListeDevisBureauEtudes extends VerticalLayout {
 		}catch(Error e){
 			System.out.println(e.toString());
 		}
-		for (Devis d : devis) {
+		for (Devis d : listDevis) {
 			Object newItemId = tabDevis.addItem();
 			Item row1 = tabDevis.getItem(newItemId);
 			row1.getItemProperty("Ref").setValue(d.getRef());
@@ -66,10 +67,25 @@ public class ListeDevisBureauEtudes extends VerticalLayout {
 		
 		btnOuvrir.addClickListener(new Button.ClickListener() {
 			
+			
+		
+			@SuppressWarnings("unused")
 			@Override
 			public void buttonClick(ClickEvent event) {
-				Notification.show("The button validate was clicked",
-						Type.TRAY_NOTIFICATION);
+				Devis selectDevis= new Devis() ;
+				for (Devis devis : listDevis){
+					if(devis.getRef().equals(refSelected)){
+						selectDevis = devis;
+					}
+				}
+				if(selectDevis != null){
+					removeAllComponents();
+					addComponent(new FicheDevis(devisEJB, selectDevis.getId()));
+				}else{
+					Notification.show("No selection",
+							Type.TRAY_NOTIFICATION);
+				}
+				
 			}
 		});
 		
@@ -78,7 +94,10 @@ public class ListeDevisBureauEtudes extends VerticalLayout {
 			@Override
 			public void valueChange(ValueChangeEvent event) {
 				// TODO Auto-generated method stub
-				Notification.show(tabDevis.getItem(tabDevis.getValue()).toString(),
+				
+				String ref = (String) tabDevis.getItem(tabDevis.getValue()).getItemProperty("Ref").getValue();
+				refSelected=ref;
+				Notification.show(refSelected,
 						Type.TRAY_NOTIFICATION);
 				
 			}
