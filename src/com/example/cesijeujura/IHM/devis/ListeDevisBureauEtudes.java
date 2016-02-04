@@ -94,11 +94,13 @@ public class ListeDevisBureauEtudes extends VerticalLayout {
 			@Override
 			public void valueChange(ValueChangeEvent event) {
 				// TODO Auto-generated method stub
+				if(tabDevis.isSelected(tabDevis.getValue())){
+					String ref = (String) tabDevis.getItem(tabDevis.getValue()).getItemProperty("Ref").getValue();
+					refSelected=ref;
+					Notification.show(refSelected,
+							Type.TRAY_NOTIFICATION);
+				}
 				
-				String ref = (String) tabDevis.getItem(tabDevis.getValue()).getItemProperty("Ref").getValue();
-				refSelected=ref;
-				Notification.show(refSelected,
-						Type.TRAY_NOTIFICATION);
 				
 			}
 			
