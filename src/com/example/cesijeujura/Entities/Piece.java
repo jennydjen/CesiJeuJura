@@ -16,16 +16,16 @@ public class Piece {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private	int surface;
-	private int nbPorte;
-	private int nbFenetre;
+	private int nb_Porte;
+	private int nb_Fenetre;
 	private String forme;
 	private String finition;
-	private int numEtage;
+	private int num_Etage;
 	
 	@ManyToOne
 	private Projet projet;
 	@ManyToOne
-	private Type_Piece type;
+	private Type_Piece type_Piece;
 	@OneToMany(mappedBy="piece")
 	private List<Carac_fenetre> detailsFenetre;
 	
@@ -46,19 +46,19 @@ public class Piece {
 	}
 
 	public int getNbPorte() {
-		return nbPorte;
+		return nb_Porte;
 	}
 
 	public void setNbPorte(int nbPorte) {
-		this.nbPorte = nbPorte;
+		this.nb_Porte = nbPorte;
 	}
 
 	public int getNbFenetre() {
-		return nbFenetre;
+		return nb_Fenetre;
 	}
 
 	public void setNbFenetre(int nbFenetre) {
-		this.nbFenetre = nbFenetre;
+		this.nb_Fenetre = nbFenetre;
 	}
 
 	public String getForme() {
@@ -78,11 +78,11 @@ public class Piece {
 	}
 
 	public int getNumEtage() {
-		return numEtage;
+		return num_Etage;
 	}
 
 	public void setNumEtage(int numEtage) {
-		this.numEtage = numEtage;
+		this.num_Etage = numEtage;
 	}
 
 	public Projet getProjet() {
@@ -94,11 +94,11 @@ public class Piece {
 	}
 
 	public Type_Piece getType() {
-		return type;
+		return type_Piece;
 	}
 
 	public void setType(Type_Piece type) {
-		this.type = type;
+		this.type_Piece = type;
 	}
 	
 	public List<Carac_fenetre> getDetailsFenetre() {

@@ -16,7 +16,7 @@ public class Type_Piece {
 	private int id;
 	private String nom;
 	
-	@OneToMany(mappedBy="type")
+	@OneToMany(mappedBy="type_Piece")
 	private List<Piece> pieces;
 	
 	public Type_Piece() {
