@@ -6,6 +6,7 @@ import com.example.cesijeujura.IEJB.ClientIEJB;
 import com.example.cesijeujura.IEJB.ComposantIEJB;
 import com.example.cesijeujura.IEJB.DevisIEJB;
 import com.example.cesijeujura.IEJB.ModuleIEJB;
+import com.example.cesijeujura.IEJB.Type_PieceIEJB;
 import com.example.cesijeujura.IEJB.UserIEJB;
 import com.example.cesijeujura.IHM.MenuView;
 import com.vaadin.annotations.Theme;
@@ -34,6 +35,9 @@ public class CesijeujuraUI extends UI {
 	@Inject
 	private ComposantIEJB composantEJB;
 	
+	@Inject
+	private Type_PieceIEJB Type_PieceEJB;
+	
 	/*@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = CesijeujuraUI.class)
 	public static class Servlet extends VaadinServlet {
@@ -41,7 +45,7 @@ public class CesijeujuraUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		final VerticalLayout layout = new MenuView(devisEJB, clientEJB, moduleEJB, userEJB, composantEJB);
+		final VerticalLayout layout = new MenuView(devisEJB, clientEJB, moduleEJB, userEJB, composantEJB, Type_PieceEJB);
 		//layout.setMargin(true);
 		setContent(layout);
 

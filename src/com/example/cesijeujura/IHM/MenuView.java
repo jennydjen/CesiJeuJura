@@ -1,9 +1,11 @@
 package com.example.cesijeujura.IHM;
 
+import com.example.cesijeujura.EJB.Type_PieceEJB;
 import com.example.cesijeujura.IEJB.ClientIEJB;
 import com.example.cesijeujura.IEJB.ComposantIEJB;
 import com.example.cesijeujura.IEJB.DevisIEJB;
 import com.example.cesijeujura.IEJB.ModuleIEJB;
+import com.example.cesijeujura.IEJB.Type_PieceIEJB;
 import com.example.cesijeujura.IEJB.UserIEJB;
 import com.example.cesijeujura.IHM.client.FicheClient;
 import com.example.cesijeujura.IHM.devis.EditionComposant;
@@ -35,7 +37,8 @@ public class MenuView extends VerticalLayout {
 	protected MenuBar menuBar;
 	protected VerticalLayout contenu;
 	
-	public MenuView(final DevisIEJB devisEJB, final ClientIEJB clientEJB, final ModuleIEJB moduleEJB, final UserIEJB userEJB , final ComposantIEJB composantEJB) {
+	public MenuView(final DevisIEJB devisEJB, final ClientIEJB clientEJB, final ModuleIEJB moduleEJB, final UserIEJB userEJB , final ComposantIEJB composantEJB
+			,final Type_PieceIEJB typePieceEJB) {
 		Design.read(this);
 				
 		MenuBar.Command clients = new Command() {
