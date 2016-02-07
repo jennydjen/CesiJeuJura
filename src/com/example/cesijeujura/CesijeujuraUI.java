@@ -36,7 +36,7 @@ public class CesijeujuraUI extends UI {
 	private ComposantIEJB composantEJB;
 	
 	@Inject
-	private Type_PieceIEJB Type_PieceEJB;
+	private Type_PieceIEJB type_PieceEJB;
 	
 	/*@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = CesijeujuraUI.class)
@@ -45,7 +45,7 @@ public class CesijeujuraUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		final VerticalLayout layout = new MenuView(devisEJB, clientEJB, moduleEJB, userEJB, composantEJB, Type_PieceEJB);
+		final VerticalLayout layout = new MenuView(devisEJB, clientEJB, moduleEJB, userEJB, composantEJB, type_PieceEJB);
 		//layout.setMargin(true);
 		setContent(layout);
 

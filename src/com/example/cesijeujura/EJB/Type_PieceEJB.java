@@ -5,8 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import com.example.cesijeujura.DAO.Type_PieceDAO;
-import com.example.cesijeujura.Entities.Module;
+import com.example.cesijeujura.IDAO.Type_PieceIDAO;
 import com.example.cesijeujura.Entities.Type_Piece;
 import com.example.cesijeujura.IEJB.Type_PieceIEJB;
 
@@ -14,7 +13,7 @@ import com.example.cesijeujura.IEJB.Type_PieceIEJB;
 public class Type_PieceEJB implements Type_PieceIEJB{
 	
 	@Inject
-	private Type_PieceDAO typePieceDao;
+	private Type_PieceIDAO typePieceDao;
 
 	@Override
 	public Type_Piece create(Type_Piece object) {
