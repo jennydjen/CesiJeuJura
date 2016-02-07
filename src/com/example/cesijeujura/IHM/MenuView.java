@@ -92,14 +92,14 @@ public class MenuView extends VerticalLayout {
 			public void menuSelected(MenuItem selectedItem) {
 				int id=1;
 				contenu.removeAllComponents();
-				contenu.addComponent(new FicheDevis(devisEJB, id));
+				contenu.addComponent(new FicheDevis(devisEJB, id, typePieceEJB));
 			}
 		};
 		MenuBar.Command listeDevisBureau = new Command() {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 				contenu.removeAllComponents();
-				contenu.addComponent(new ListeDevisBureauEtudes(devisEJB));
+				contenu.addComponent(new ListeDevisBureauEtudes(devisEJB,typePieceEJB));
 			}
 		};
 		
@@ -119,6 +119,6 @@ public class MenuView extends VerticalLayout {
 	
 	public void afficherFicheDevis(Integer idDevis){
 		contenu.removeAllComponents();
-		contenu.addComponent(new FicheDevis(devisEJB, idDevis));
+		contenu.addComponent(new FicheDevis(devisEJB, idDevis, null));
 	}
 }

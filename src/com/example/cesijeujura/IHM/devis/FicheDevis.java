@@ -66,15 +66,14 @@ public class FicheDevis extends VerticalLayout {
 	private Projet projet = new Projet();
 	private Client client = new Client();
 	private List<Type_Piece> listTypePiece = new ArrayList<Type_Piece>();
-	private Type_PieceIEJB typePieceIEJB ;
 
 	@SuppressWarnings("unchecked")
-	public FicheDevis(DevisIEJB devisEJB,int id) {
+	public FicheDevis(DevisIEJB devisEJB,int id,Type_PieceIEJB typePieceEJB) {
 		Design.read(this);
 		
-		//listTypePiece=typePieceIEJB.findAllType_Piece();
+		listTypePiece=typePieceEJB.findAllType_Piece();
 		
-		//typePiece.addItems(listTypePiece);
+		typePiece.addItems(listTypePiece);
 				
 		Devis devis = devisEJB.find(id);
 	
