@@ -71,9 +71,6 @@ public class FicheClient extends VerticalLayout {
 				Projet p = mapsProjets.get((Integer) projectTable.getValue());
 				
 				CesijeujuraUI.getInstanceMenuView().afficherFicheDevis(p.getDevis().get(p.getDevis().size()-1).getId());
-				
-				Notification.show("Afficher Fiche devis",
-						Type.TRAY_NOTIFICATION);
 			}
 		});
 		
