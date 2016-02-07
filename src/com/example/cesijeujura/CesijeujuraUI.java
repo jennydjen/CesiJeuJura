@@ -38,6 +38,8 @@ public class CesijeujuraUI extends UI {
 	@Inject
 	private Type_PieceIEJB type_PieceEJB;
 	
+	private static MenuView menuView;
+	
 	/*@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = CesijeujuraUI.class)
 	public static class Servlet extends VaadinServlet {
@@ -45,9 +47,8 @@ public class CesijeujuraUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		final VerticalLayout layout = new MenuView(devisEJB, clientEJB, moduleEJB, userEJB, composantEJB, type_PieceEJB);
-		//layout.setMargin(true);
-		setContent(layout);
+		menuView = new MenuView(devisEJB, clientEJB, moduleEJB, userEJB, composantEJB, type_PieceEJB);
+		setContent(menuView);
 
 		/*Button button = new Button("Click Me");
 		button.addClickListener(new Button.ClickListener() {
@@ -58,4 +59,7 @@ public class CesijeujuraUI extends UI {
 		layout.addComponent(button);*/
 	}
 
+	public static MenuView getInstanceMenuView(){
+		return menuView;
+	}
 }

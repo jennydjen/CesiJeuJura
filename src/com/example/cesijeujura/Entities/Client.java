@@ -11,7 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-@NamedQueries(value = { @NamedQuery(name = "client.findAll", query = "Select c from Client c") })
+@NamedQueries(value = { @NamedQuery(name = "client.findAll", query = "Select c from Client c ORDER BY c.nom") })
 public class Client {
 
 	@Id
