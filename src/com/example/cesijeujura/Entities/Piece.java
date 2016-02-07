@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -23,8 +24,10 @@ public class Piece {
 	private int num_Etage;
 	
 	@ManyToOne
+	@JoinColumn(name="PROJET_ID")
 	private Projet projet;
 	@ManyToOne
+	@JoinColumn(name="type_piece_id")
 	private Type_Piece type_Piece;
 	@OneToMany(mappedBy="piece")
 	private List<Carac_fenetre> detailsFenetre;

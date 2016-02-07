@@ -116,4 +116,9 @@ public class MenuView extends VerticalLayout {
 		contenu.removeAllComponents();
 		contenu.addComponent(new FicheClient(devisEJB, client));
 	}
+	
+	public void afficherFicheDevis(Integer idDevis){
+		contenu.removeAllComponents();
+		contenu.addComponent(new FicheDevis(devisEJB, idDevis));
+	}
 }

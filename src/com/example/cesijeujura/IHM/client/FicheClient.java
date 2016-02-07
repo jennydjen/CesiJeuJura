@@ -1,7 +1,10 @@
 package com.example.cesijeujura.IHM.client;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.example.cesijeujura.CesijeujuraUI;
 import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.Entities.Devis;
 import com.example.cesijeujura.Entities.Etat;
@@ -55,6 +58,7 @@ public class FicheClient extends VerticalLayout {
 	protected Table projectTable;
 	protected HorizontalLayout buttonLayout;
 	protected Button seeDevisButton;
+	private Map<Integer, Projet> mapsProjets;
 
 	public FicheClient(DevisIEJB devisEJB, Client client) {
 		Design.read(this);
@@ -64,6 +68,10 @@ public class FicheClient extends VerticalLayout {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
+				Projet p = mapsProjets.get((Integer) projectTable.getValue());
+				
+				CesijeujuraUI.getInstanceMenuView().afficherFicheDevis(p.getDevis().get(p.getDevis().size()-1).getId());
+				
 				Notification.show("Afficher Fiche devis",
 						Type.TRAY_NOTIFICATION);
 			}
@@ -105,8 +113,10 @@ public class FicheClient extends VerticalLayout {
 		projectTable.addContainerProperty("Etat de la commande", Etat.class, Etat.A_TRAITER);
 		projectTable.addContainerProperty("Prix", Double.class, 0.0);
 		
+		mapsProjets = new HashMap<Integer, Projet>();
+		int i = 1;
 		for(Projet p : client.getProjets()){
-			
+			mapsProjets.put(i, p);
 			Devis devis = null;
 			Date dateMax = null;
 			for(Devis d: p.getDevis()){
@@ -123,6 +133,7 @@ public class FicheClient extends VerticalLayout {
 			row1.getItemProperty("Surface").setValue(p.getSurface());
 			row1.getItemProperty("Etat de la commande").setValue(devis.getEtat());
 			row1.getItemProperty("Prix").setValue(devis.getPrix());
+			i++;
 		}	
 		projectTable.addValueChangeListener(new ValueChangeListener() {
 
