@@ -3,6 +3,7 @@ package com.example.cesijeujura.Entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,9 +32,9 @@ public class Projet {
 	@ManyToOne
 	@JoinColumn(name="fk_idclient")
 	private Client client;
-	@OneToMany(mappedBy="projet")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="projet")
 	private List<Piece> pieces;
-	@OneToMany(mappedBy="projet")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="projet")
 	private List<Devis> devis;
 	
 	public Projet(){
