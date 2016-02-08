@@ -39,11 +39,13 @@ public class MenuView extends VerticalLayout {
 	private MenuBar menuBar;
 	private VerticalLayout contenu;
 	private DevisIEJB devisEJB;
+	private Type_PieceIEJB typePieceEJB;
 	
 	public MenuView(final DevisIEJB devisEJB, final ClientIEJB clientEJB, final ModuleIEJB moduleEJB, final UserIEJB userEJB , final ComposantIEJB composantEJB
 			,final Type_PieceIEJB typePieceEJB) {
 		Design.read(this);
 		this.devisEJB = devisEJB;
+		this.typePieceEJB = typePieceEJB;
 				
 		MenuBar.Command clients = new Command() {
 			@Override
@@ -119,6 +121,6 @@ public class MenuView extends VerticalLayout {
 	
 	public void afficherFicheDevis(Integer idDevis){
 		contenu.removeAllComponents();
-		contenu.addComponent(new FicheDevis(devisEJB, idDevis, null));
+		contenu.addComponent(new FicheDevis(devisEJB, idDevis, typePieceEJB));
 	}
 }
