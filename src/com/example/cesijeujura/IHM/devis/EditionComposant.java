@@ -2,6 +2,7 @@ package com.example.cesijeujura.IHM.devis;
 
 import java.util.List;
 
+import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.Entities.Composant;
 import com.example.cesijeujura.Entities.Quantite_Composant_Module;
 import com.example.cesijeujura.IEJB.ComposantIEJB;
@@ -67,7 +68,15 @@ public class EditionComposant extends VerticalLayout {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				Notification.show("Supprimer un Composant",
-						Type.TRAY_NOTIFICATION);
+				Type.TRAY_NOTIFICATION);
+				Composant c = (Composant) composantTable.getValue();				
+			//	System.out.println(idTable);
+			//	System.out.println("test de william");
+				Quantite_Composant_Module quantitecomposant = new Quantite_Composant_Module();
+				quantitecomposant.setComposant(c);
+				moduleEJB.findAllModule().get(0).getComposants().remove(quantitecomposant);
+				moduleEJB.update(moduleEJB.findAllModule().get(0));		
+
 			}
 		});
 

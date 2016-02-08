@@ -1,9 +1,11 @@
 package com.example.cesijeujura.IHM.devis;
 
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.example.cesijeujura.CesijeujuraUI;
 import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.Entities.Devis;
 import com.example.cesijeujura.Entities.Etat;
@@ -55,6 +57,7 @@ public class ListeDevis extends VerticalLayout {
 	protected Button modifButton;
 	protected Button validateButton;
 	protected Button deleteButton;
+	private Map<Integer, Devis> mapsDevis;
 
 	private DevisIEJB devisEJB;
 
@@ -75,8 +78,10 @@ public class ListeDevis extends VerticalLayout {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				Notification.show("The button open was clicked",
-						Type.TRAY_NOTIFICATION);
+				Devis d = mapsDevis.get((Integer) devisTable.getValue());
+
+				CesijeujuraUI.getInstanceMenuView().afficherFicheDevis(
+						d.getId());
 			}
 		});
 
@@ -148,13 +153,18 @@ public class ListeDevis extends VerticalLayout {
 		devisTable.addContainerProperty("Etat", String.class, "");
 		devisTable.addContainerProperty("Date", Date.class, null);
 
+		mapsDevis = new HashMap<Integer, Devis>();
+		int i = 1;
 		for (Devis d : devis) {
+			mapsDevis.put(i, d);
+
 			Object newItemId = devisTable.addItem();
 			Item row1 = devisTable.getItem(newItemId);
 			row1.getItemProperty("Ref").setValue(d.getRef());
 			row1.getItemProperty("Client").setValue(d.getProjet().getClient());
 			row1.getItemProperty("Etat").setValue(d.getEtat().toString());
 			row1.getItemProperty("Date").setValue(d.getDateCreation());
+			i++;
 		}
 
 		openButton.setEnabled(false);
