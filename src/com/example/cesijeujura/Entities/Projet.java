@@ -31,9 +31,9 @@ public class Projet {
 	@ManyToOne
 	@JoinColumn(name="fk_idclient")
 	private Client client;
-	@OneToMany(mappedBy="projet")
+	@OneToMany(mappedBy="piece")
 	private List<Piece> pieces;
-	@OneToMany(mappedBy="projet")
+	@OneToMany(mappedBy="devis")
 	private List<Devis> devis;
 	
 	public Projet(){

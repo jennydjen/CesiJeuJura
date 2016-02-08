@@ -113,6 +113,7 @@ public class FicheDevis extends VerticalLayout {
 		
 		tabItem.setSizeFull();
 		tabItem.setSelectable(true);
+		tabItem.setEditable(true);
 		tabItem.addContainerProperty("Type de pièces", String.class, "");
 		tabItem.addContainerProperty("Nom", String.class, "");
 		tabItem.addContainerProperty("Réference", String.class, "");

@@ -36,3 +36,11 @@ INSERT INTO `cesijeujura`.`type_piece` (`ID`, `NOM`) VALUES
 ('5', 'Salle à manger'), 
 ('6', 'Chambre'), 
 (NULL, 'Garage');
+
+
+INSERT INTO `cesijeujura`.`type_fenetre` (`ID`, `NOM`) VALUES 
+(NULL, 'Ronde'), (NULL, 'Carre'), (NULL, 'Rectangle');
+
+INSERT INTO `cesijeujura`.`piece` (`ID`, `SURFACE`, `NB_PORTE`, `NB_FENETRE`, `FORME`, `FINITION`, `NUM_ETAGE`, `PROJET_ID`, `TYPE_PIECE_ID`) VALUES 
+(NULL, '20', '2', '2', 'Carré', 'vide', '0', '1', '2'), 
+(NULL, '10', '1', '1', 'rectangle', 'vide', '0', '1', '1');
