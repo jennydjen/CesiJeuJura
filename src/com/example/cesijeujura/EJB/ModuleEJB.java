@@ -7,7 +7,9 @@ import javax.inject.Inject;
 
 
 
+
 import com.example.cesijeujura.Entities.Module;
+import com.example.cesijeujura.Entities.Quantite_Composant_Module;
 import com.example.cesijeujura.IDAO.ModuleIDAO;
 import com.example.cesijeujura.IEJB.ModuleIEJB;
 
@@ -47,4 +49,8 @@ public class ModuleEJB implements ModuleIEJB{
 		return moduleDAO.findAllModule();
 	}
 
+	@Override
+	public void deleteComposant(Quantite_Composant_Module composant){
+		moduleDAO.deleteComposant(composant);
+	}
 }

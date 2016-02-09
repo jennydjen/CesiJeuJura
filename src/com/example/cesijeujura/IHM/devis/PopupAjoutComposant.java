@@ -1,7 +1,5 @@
 package com.example.cesijeujura.IHM.devis;
 
-
-
 import com.example.cesijeujura.Entities.Composant;
 import com.example.cesijeujura.Entities.Module;
 import com.example.cesijeujura.Entities.Quantite_Composant_Module;
@@ -16,7 +14,7 @@ import com.vaadin.ui.Window;
 import com.vaadin.ui.Button.ClickEvent;
 
 public class PopupAjoutComposant extends Window {
-
+	private EditionComposant view;
 
 	public PopupAjoutComposant(Module module, ModuleIEJB moduleiejb) {
 		setWidth(450.0f, Unit.PIXELS);
@@ -24,9 +22,9 @@ public class PopupAjoutComposant extends Window {
 		setModal(true);
 		FormLayout layout = new FormLayout();
 		layout.setMargin(true);
-		Label lblnomcomposant = new Label("Nom Du Composant");	
+		Label lblnomcomposant = new Label("Nom Du Composant");
 		TextField txtnomcomposant = new TextField();
-		Label lblquantitecomposant = new Label("Quantité");		
+		Label lblquantitecomposant = new Label("Quantité");
 		TextField txtquantitecomposant = new TextField();
 		Button buttonvalider = new Button("Valider");
 
@@ -45,18 +43,24 @@ public class PopupAjoutComposant extends Window {
 				composant.setPrix(0F);
 				Quantite_Composant_Module quantitecomposant = new Quantite_Composant_Module();
 				quantitecomposant.setComposant(composant);
-				quantitecomposant.setNb( Integer.parseInt(txtquantitecomposant.getValue()));
+				quantitecomposant.setNb(Integer.parseInt(txtquantitecomposant
+						.getValue()));
 				quantitecomposant.setModule(module);
 				module.getComposants().add(quantitecomposant);
-				moduleiejb.update(module);		
+				moduleiejb.update(module);
+				if(view != null){
+					view.refreshTable();
+				}
 				Notification.show("Votre composant a été ajouté",
 						Type.TRAY_NOTIFICATION);
 				close();
 			}
 		});
 
-
 		setContent(layout);
 	}
-
+	
+	public void setView(EditionComposant view) {
+		this.view = view;
+	}
 }
