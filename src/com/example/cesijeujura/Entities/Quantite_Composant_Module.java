@@ -16,11 +16,12 @@ public class Quantite_Composant_Module {
 	private int id;
 	private int quantite;
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="id_composant")
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH })
+	@JoinColumn(name = "id_composant")
 	private Composant composant;
 	@ManyToOne
-	@JoinColumn(name="id_module")
+	@JoinColumn(name = "id_module")
 	private Module module;
 
 	public Quantite_Composant_Module() {

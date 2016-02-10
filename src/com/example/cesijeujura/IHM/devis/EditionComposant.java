@@ -61,7 +61,7 @@ public class EditionComposant extends VerticalLayout {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				PopupAjoutComposant popup = new PopupAjoutComposant(module,
-						moduleEJB);
+						moduleEJB,composantEJB);
 				getUI().addWindow(popup);
 				popup.setView(EditionComposant.this);
 				popup.setVisible(true);
