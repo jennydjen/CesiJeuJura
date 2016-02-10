@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -43,7 +44,7 @@ public class Devis implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date_creation;
 
-	@OneToMany(mappedBy="devis")
+	@OneToMany(mappedBy="devis", cascade=CascadeType.ALL)
 	private List<Fichier> fichiers;
 	@OneToMany(mappedBy="devis")
 	private List<Devis_gamme> gammes;
