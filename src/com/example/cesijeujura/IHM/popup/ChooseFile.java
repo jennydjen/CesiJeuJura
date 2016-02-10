@@ -2,6 +2,8 @@ package com.example.cesijeujura.IHM.popup;
 
 import java.io.OutputStream;
 
+import com.example.cesijeujura.Entities.Devis;
+import com.example.cesijeujura.Entities.Fichier;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Upload;
@@ -21,6 +23,12 @@ public class ChooseFile extends Window{
 
             public OutputStream receiveUpload(String filename, String MIMEType) {
             	// TODO : faire le code pour récupérer le fichier et le mettre dans le tableau
+//            	Fichier fichier = new Fichier();
+//            	Devis devis = new Devis();
+//            	fichier.setDevis(devis.getId());
+//            	fichier.setPath(filename);
+//            	//fichier.u
+            	
             	Notification.show("Récupérer le fichier "+ filename,
 						Type.TRAY_NOTIFICATION);
             	close();

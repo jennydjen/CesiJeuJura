@@ -5,6 +5,7 @@ import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.IEJB.ClientIEJB;
 import com.example.cesijeujura.IEJB.ComposantIEJB;
 import com.example.cesijeujura.IEJB.DevisIEJB;
+import com.example.cesijeujura.IEJB.FichierIEJB;
 import com.example.cesijeujura.IEJB.ModuleIEJB;
 import com.example.cesijeujura.IEJB.Type_PieceIEJB;
 import com.example.cesijeujura.IEJB.UserIEJB;
@@ -40,12 +41,14 @@ public class MenuView extends VerticalLayout {
 	private VerticalLayout contenu;
 	private DevisIEJB devisEJB;
 	private Type_PieceIEJB typePieceEJB;
+	private FichierIEJB fichiersEJB;
 	
 	public MenuView(final DevisIEJB devisEJB, final ClientIEJB clientEJB, final ModuleIEJB moduleEJB, final UserIEJB userEJB , final ComposantIEJB composantEJB
-			,final Type_PieceIEJB typePieceEJB) {
+			,final Type_PieceIEJB typePieceEJB,final FichierIEJB fichiersEJB) {
 		Design.read(this);
 		this.devisEJB = devisEJB;
 		this.typePieceEJB = typePieceEJB;
+		this.fichiersEJB = fichiersEJB;
 				
 		MenuBar.Command clients = new Command() {
 			@Override
@@ -85,7 +88,7 @@ public class MenuView extends VerticalLayout {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 				contenu.removeAllComponents();
-				contenu.addComponent(new TraitementDevisView(moduleEJB));
+				contenu.addComponent(new TraitementDevisView(moduleEJB,fichiersEJB));
 			}
 		};
 		MenuBar.Command ficheDevis = new Command() {
