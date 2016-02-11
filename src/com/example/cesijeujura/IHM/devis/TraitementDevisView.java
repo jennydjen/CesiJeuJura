@@ -116,14 +116,20 @@ public class TraitementDevisView extends VerticalLayout {
 				ChooseFile choose = new ChooseFile();
 			    getUI().addWindow(choose);
 			    choose.setVisible(true);
+			    
+			    
+			    filesTable.refreshRowCache();
+				filesTable.validate();
 
 				//JOptionPane jop = new JOptionPane();//jop2 = new JOptionPane();
 			    //String nom = jop.showInputDialog(null, "Veuillez décliner votre identité !", "Gendarmerie nationale !", JOptionPane.QUESTION_MESSAGE);
 			    //jop2.showMessageDialog(null, "Votre nom est " + nom, "Identité", JOptionPane.INFORMATION_MESSAGE);
 				//rowadd.getItemProperty("Nom").setValue(upload.getId());
 				//rowadd.getItemProperty("Chaine").setValue(upload.getDescription());
-				rowadd.getItemProperty("Nom").setValue("coucou");
-				rowadd.getItemProperty("Chaine").setValue("test");
+				
+				
+				//rowadd.getItemProperty("Nom").setValue("coucou");
+				//rowadd.getItemProperty("Chaine").setValue("test");
 			}
 	    });
 		
