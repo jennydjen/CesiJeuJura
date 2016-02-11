@@ -13,6 +13,7 @@ import com.example.cesijeujura.EJB.ModuleEJB;
 import com.example.cesijeujura.Entities.Devis;
 import com.example.cesijeujura.Entities.Fichier;
 import com.example.cesijeujura.Entities.Module;
+import com.example.cesijeujura.IEJB.DevisIEJB;
 import com.example.cesijeujura.IEJB.FichierIEJB;
 import com.example.cesijeujura.IEJB.ModuleIEJB;
 import com.example.cesijeujura.IHM.popup.ChooseFile;
@@ -72,7 +73,7 @@ public class TraitementDevisView extends VerticalLayout {
 	
 	//final JFileChooser fc = new JFileChooser();
 
-	public TraitementDevisView(ModuleIEJB moduleEJB,FichierIEJB fichiersIEJB) {
+	public TraitementDevisView(ModuleIEJB moduleEJB,final FichierIEJB fichiersIEJB,final DevisIEJB devisIEJB,final int id) {
 		Design.read(this);
 		// BOUTON AJOUTER LIGNE CHIFFRAGE
 		editerCompButton.addClickListener(new ClickListener() {
@@ -102,18 +103,19 @@ public class TraitementDevisView extends VerticalLayout {
 		// BOUTON AJOUTER LIGNE IMPORTATION
 		addButton.addClickListener(new ClickListener() {
 			@Override
-			public void buttonClick(ClickEvent event) {
+			public void buttonClick(ClickEvent event){
 				//filesTable.removeAllItems();
-				filesTable.setSizeFull();
-				filesTable.setSelectable(true);
+				//filesTable.setSizeFull();
+				//filesTable.setSelectable(true);
 				
-				filesTable.addContainerProperty("Nom", String.class, "");
-				filesTable.addContainerProperty("Chaine", String.class, "");
+				//filesTable.addContainerProperty("Nom", String.class, "");
+				//filesTable.addContainerProperty("Chaine", String.class, "");
 				
-				Object newItemAddID = filesTable.addItem();
-				Item rowadd = filesTable.getItem(newItemAddID);
+				//Object newItemAddID = filesTable.addItem();
+				//Item rowadd = filesTable.getItem(newItemAddID);
 				
-				ChooseFile choose = new ChooseFile();
+				Devis devis = devisIEJB.find(id);
+				ChooseFile choose = new ChooseFile(devis,fichiersIEJB);
 			    getUI().addWindow(choose);
 			    choose.setVisible(true);
 			    

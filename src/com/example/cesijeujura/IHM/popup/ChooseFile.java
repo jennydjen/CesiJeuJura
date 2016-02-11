@@ -7,6 +7,7 @@ import java.io.OutputStream;
 
 import com.example.cesijeujura.Entities.Devis;
 import com.example.cesijeujura.Entities.Fichier;
+import com.example.cesijeujura.IEJB.FichierIEJB;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Upload;
@@ -17,17 +18,24 @@ import com.vaadin.ui.Upload.SucceededEvent;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Notification.Type;
 
-public class ChooseFile extends Window implements Upload.StartedListener,
+
+public class ChooseFile extends Window implements Upload.StartedListener,	
+
 		Upload.ProgressListener, Upload.FailedListener,
 		Upload.SucceededListener, Upload.FinishedListener {
-
-	public ChooseFile() {
+		
+		private Devis devis;
+		private FichierIEJB fichierEJB;
+		
+	
+	public ChooseFile(Devis devis,FichierIEJB fichierEJB) {
 		setWidth(600.0f, Unit.PIXELS);
 		setHeight(150.0f, Unit.PIXELS);
 		setModal(true);
 		FormLayout layout = new FormLayout();
 		layout.setMargin(true);
-
+		this.devis = devis;
+		this.fichierEJB = fichierEJB;
 		Upload upload = new Upload("File", new Upload.Receiver() {
 
 			public OutputStream receiveUpload(String filename, String MIMEType) {
@@ -62,6 +70,12 @@ public class ChooseFile extends Window implements Upload.StartedListener,
 	@Override
 	public void uploadSucceeded(SucceededEvent event) {
 		// TODO : faire le code pour récupérer le fichier et le mettre		
+		Fichier fichier = new Fichier();
+    	fichier.setDevis(devis);
+    	fichier.setPath(event.getFilename());
+    	devis.getFichiers().add(fichier);
+    	fichierEJB.create(fichier);
+
 		Notification.show("Récupérer le fichier "+ event.getFilename(),
 				Type.TRAY_NOTIFICATION);
 		close();

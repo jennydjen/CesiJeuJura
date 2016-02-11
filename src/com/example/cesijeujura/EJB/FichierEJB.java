@@ -18,7 +18,7 @@ public class FichierEJB implements FichierIEJB{
 	@Override
 	public Fichier create(Fichier object) {
 		// TODO Auto-generated method stub
-		return null;
+		return FichierDao.create(object);
 	}
 
 	@Override

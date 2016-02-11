@@ -17,7 +17,8 @@ public class FichierDAO implements FichierIDAO{
 	@Override
 	public Fichier create(Fichier t) {
 		// TODO Auto-generated method stub
-		return null;
+		this.em.persist(t);
+		return t;
 	}
 
 	@Override
