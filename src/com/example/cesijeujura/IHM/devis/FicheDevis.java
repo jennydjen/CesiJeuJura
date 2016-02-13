@@ -1,6 +1,7 @@
 package com.example.cesijeujura.IHM.devis;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.example.cesijeujura.EJB.ClientEJB;
@@ -110,7 +111,14 @@ public class FicheDevis extends VerticalLayout {
 			
 			public void buttonClick(ClickEvent event) {
 				
-				tabItem.getItemIds();
+				Collection<?> tab= tabItem.getItemIds();
+				for(Object item:tab){
+					tabItem.getItem(item);
+				}
+				
+				// id similaire avec liste donc vérifier avec la liste pour update 
+				
+				//Liste de nouvelle entrée à insérer 
 			}
 		});
 		
