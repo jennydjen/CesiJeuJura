@@ -15,6 +15,7 @@ import com.example.cesijeujura.Entities.Piece;
 import com.example.cesijeujura.Entities.Projet;
 import com.example.cesijeujura.Entities.Type_Piece;
 import com.example.cesijeujura.IEJB.DevisIEJB;
+import com.example.cesijeujura.IEJB.PieceIEJB;
 import com.example.cesijeujura.IEJB.Type_PieceIEJB;
 import com.example.cesijeujura.IHM.MenuView;
 import com.example.cesijeujura.IHM.client.FicheClient;
@@ -23,6 +24,7 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.data.Item;
 import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.HorizontalLayout;
@@ -67,18 +69,28 @@ public class FicheDevis extends VerticalLayout {
 	private Projet projet = new Projet();
 	private Client client = new Client();
 	private List<Type_Piece> listTypePiece = new ArrayList<Type_Piece>();
+	private List<Piece> listPieceAjout = new ArrayList<Piece>();
 
 	@SuppressWarnings("unchecked")
-	public FicheDevis(DevisIEJB devisEJB,int id,Type_PieceIEJB typePieceEJB) {
+	public FicheDevis(DevisIEJB devisEJB,int id,Type_PieceIEJB typePieceEJB, PieceIEJB pieceEJB) {
 		Design.read(this);
+		
+		
+		
 		listTypePiece=typePieceEJB.findAllType_Piece();
 		//typePiece = new ComboBox("Piece", listTypePiece);
 		typePiece.addItems(listTypePiece);
-		for(Type_Piece piece:listTypePiece){
-			typePiece.setItemCaptionPropertyId(piece.getId());
-			typePiece.setItemCaptionMode(ItemCaptionMode.PROPERTY);
+		//typePiece.addContainerProperty("selection", Type_Piece.class, "");
+		
+		/*for(Type_Piece piece:listTypePiece){
+			Object itemId = typePiece.addItem();
+			Item row = typePiece.getItem(itemId);
+			row.getItemProperty("selection").setValue(piece);
+			
+			//typePiece.setItemCaptionPropertyId(piece.getId());
+			//typePiece.setItemCaptionMode(ItemCaptionMode.PROPERTY);
 			//(piece, piece.getNom());
-		}
+		}*/
 		
 				
 		Devis devis = devisEJB.find(id);
@@ -91,8 +103,18 @@ public class FicheDevis extends VerticalLayout {
 		clientNum.setEnabled(false);
 		clientNum.setValue(client.getRef());
 		dateLancement.setValue(devis.getDateCreation());
+		Button save = new Button("Enregistrer");
+		layoutGauche.addComponent(save);
 		
-		MenuBar.Command projet = new Command() {
+		save.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
+				
+				tabItem.getItemIds();
+			}
+		});
+		
+		MenuBar.Command btnprojet = new Command() {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 				devis.setEtat(Etat.CREER);
@@ -113,7 +135,7 @@ public class FicheDevis extends VerticalLayout {
 			}
 		};
 	
-		etatProjet.addItem("Projet", projet);
+		etatProjet.addItem("Projet", btnprojet);
 		etatProjet.addItem("Pré-devis", predevis);
 		etatProjet.addItem("Devis", etatdevis);
 		
@@ -145,8 +167,6 @@ public class FicheDevis extends VerticalLayout {
 			row.getItemProperty("Nb Fenetres").setValue(nbFenetrePiece);
 			row.getItemProperty("Prix").setValue("");
 			
-			
-			
 		}
 		
 		btnAjout.addClickListener(new Button.ClickListener() {
@@ -154,10 +174,24 @@ public class FicheDevis extends VerticalLayout {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				// TODO Auto-generated method stub
+				boolean selected = typePiece.isSelected(typePiece.getValue());
+		
+				Type_Piece type_piece =  (Type_Piece) typePiece.getValue();
+				if(selected){
+					typePiece.getValue();
+					Notification.show(typePiece.getValue().toString()+" "+typePiece.getItem(typePiece.getValue()).toString(),
+							Type.TRAY_NOTIFICATION);
+					Piece piece = new Piece();
+					piece.setType(type_piece);
+					piece.setProjet(projet);
 				
-				typePiece.getValue();
-				Notification.show(typePiece.getValue().toString()+" "+typePiece.getItem(typePiece.getValue()).toString(),
-						Type.TRAY_NOTIFICATION);
+					Object newItemId = tabItem.addItem();
+					Item row = tabItem.getItem(newItemId);
+					String nomTypePiece = piece.getType().getNom();
+					row.getItemProperty("Type de pièces").setValue(nomTypePiece);
+					
+				}
+				
 			}
 		});
 		btnFicheClient.addClickListener(new Button.ClickListener() {

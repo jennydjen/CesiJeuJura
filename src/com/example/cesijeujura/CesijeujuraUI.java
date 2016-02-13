@@ -7,6 +7,7 @@ import com.example.cesijeujura.IEJB.ComposantIEJB;
 import com.example.cesijeujura.IEJB.DevisIEJB;
 import com.example.cesijeujura.IEJB.FichierIEJB;
 import com.example.cesijeujura.IEJB.ModuleIEJB;
+import com.example.cesijeujura.IEJB.PieceIEJB;
 import com.example.cesijeujura.IEJB.Type_PieceIEJB;
 import com.example.cesijeujura.IEJB.UserIEJB;
 import com.example.cesijeujura.IHM.MenuView;
@@ -40,6 +41,9 @@ public class CesijeujuraUI extends UI {
 	private Type_PieceIEJB type_PieceEJB;
 	
 	@Inject
+	private PieceIEJB pieceEJB;
+	
+	@Inject
 	private FichierIEJB fichiersEJB;
 	
 	private static MenuView menuView;
@@ -51,7 +55,7 @@ public class CesijeujuraUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		menuView = new MenuView(devisEJB, clientEJB, moduleEJB, userEJB, composantEJB, type_PieceEJB,fichiersEJB);
+		menuView = new MenuView(devisEJB, clientEJB, moduleEJB, userEJB, composantEJB, type_PieceEJB,fichiersEJB, pieceEJB);
 		setContent(menuView);
 
 		/*Button button = new Button("Click Me");

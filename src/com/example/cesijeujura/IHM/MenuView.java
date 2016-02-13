@@ -1,5 +1,6 @@
 package com.example.cesijeujura.IHM;
 
+import com.example.cesijeujura.EJB.PieceEJB;
 import com.example.cesijeujura.EJB.Type_PieceEJB;
 import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.IEJB.ClientIEJB;
@@ -7,6 +8,7 @@ import com.example.cesijeujura.IEJB.ComposantIEJB;
 import com.example.cesijeujura.IEJB.DevisIEJB;
 import com.example.cesijeujura.IEJB.FichierIEJB;
 import com.example.cesijeujura.IEJB.ModuleIEJB;
+import com.example.cesijeujura.IEJB.PieceIEJB;
 import com.example.cesijeujura.IEJB.Type_PieceIEJB;
 import com.example.cesijeujura.IEJB.UserIEJB;
 import com.example.cesijeujura.IHM.client.FicheClient;
@@ -42,14 +44,14 @@ public class MenuView extends VerticalLayout {
 	private DevisIEJB devisEJB;
 	private Type_PieceIEJB typePieceEJB;
 	private FichierIEJB fichiersEJB;
-	
+	private PieceIEJB pieceEJB;
 	public MenuView(final DevisIEJB devisEJB, final ClientIEJB clientEJB, final ModuleIEJB moduleEJB, final UserIEJB userEJB , final ComposantIEJB composantEJB
-			,final Type_PieceIEJB typePieceEJB,final FichierIEJB fichiersEJB) {
+			,final Type_PieceIEJB typePieceEJB,final FichierIEJB fichiersEJB, final PieceIEJB pieceEJB) {
 		Design.read(this);
 		this.devisEJB = devisEJB;
 		this.typePieceEJB = typePieceEJB;
 		this.fichiersEJB = fichiersEJB;
-				
+		this.pieceEJB = pieceEJB;
 		MenuBar.Command clients = new Command() {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
@@ -98,14 +100,14 @@ public class MenuView extends VerticalLayout {
 			public void menuSelected(MenuItem selectedItem) {
 				int id=1;
 				contenu.removeAllComponents();
-				contenu.addComponent(new FicheDevis(devisEJB, id, typePieceEJB));
+				contenu.addComponent(new FicheDevis(devisEJB, id, typePieceEJB,pieceEJB));
 			}
 		};
 		MenuBar.Command listeDevisBureau = new Command() {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
 				contenu.removeAllComponents();
-				contenu.addComponent(new ListeDevisBureauEtudes(devisEJB,typePieceEJB));
+				contenu.addComponent(new ListeDevisBureauEtudes(devisEJB,typePieceEJB,pieceEJB));
 			}
 		};
 		
@@ -125,6 +127,6 @@ public class MenuView extends VerticalLayout {
 	
 	public void afficherFicheDevis(Integer idDevis){
 		contenu.removeAllComponents();
-		contenu.addComponent(new FicheDevis(devisEJB, idDevis, typePieceEJB));
+		contenu.addComponent(new FicheDevis(devisEJB, idDevis, typePieceEJB, pieceEJB));
 	}
 }
