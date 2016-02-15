@@ -89,8 +89,9 @@ public class ListeDevis extends VerticalLayout {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				Notification.show("The button modif was clicked",
-						Type.TRAY_NOTIFICATION);
+				Devis devis = mapsDevis.get((Integer) devisTable.getValue());
+				CesijeujuraUI.getInstanceMenuView().afficherEditionProjet(
+						devis.getId());
 			}
 		});
 
@@ -117,6 +118,7 @@ public class ListeDevis extends VerticalLayout {
 		for (Etat e : Etat.values()) {
 			etatCombo.addItem(e);
 		}
+		etatCombo.setValue(Etat.VALIDATION_BUREAU);
 
 		etatCombo.addValueChangeListener(new ValueChangeListener() {
 
@@ -125,6 +127,7 @@ public class ListeDevis extends VerticalLayout {
 				initialiseDevis();
 			}
 		});
+		etatCombo.setWidth(220, Unit.PIXELS);
 
 		// Initialisation de la comboBox des clients
 		List<Client> clients = clientEJB.findAllClient();
@@ -144,7 +147,6 @@ public class ListeDevis extends VerticalLayout {
 		});
 
 		// Initialisation de la table avec les devis
-		List<Devis> devis = devisEJB.findAllDevis();
 		devisTable.setSizeFull();
 		devisTable.setSelectable(true);
 
@@ -153,19 +155,7 @@ public class ListeDevis extends VerticalLayout {
 		devisTable.addContainerProperty("Etat", String.class, "");
 		devisTable.addContainerProperty("Date", Date.class, null);
 
-		mapsDevis = new HashMap<Integer, Devis>();
-		int i = 1;
-		for (Devis d : devis) {
-			mapsDevis.put(i, d);
-
-			Object newItemId = devisTable.addItem();
-			Item row1 = devisTable.getItem(newItemId);
-			row1.getItemProperty("Ref").setValue(d.getRef());
-			row1.getItemProperty("Client").setValue(d.getProjet().getClient());
-			row1.getItemProperty("Etat").setValue(d.getEtat().toString());
-			row1.getItemProperty("Date").setValue(d.getDateCreation());
-			i++;
-		}
+		initialiseDevis();
 
 		openButton.setEnabled(false);
 		modifButton.setEnabled(false);
@@ -177,9 +167,15 @@ public class ListeDevis extends VerticalLayout {
 			@Override
 			public void valueChange(ValueChangeEvent event) {
 				if (devisTable.getValue() != null) {
+					Devis d = mapsDevis.get((Integer) devisTable.getValue());
+
 					openButton.setEnabled(true);
-					modifButton.setEnabled(true);
-					validateButton.setEnabled(true);
+					if (d.getEtat() == Etat.CREER) {
+						modifButton.setEnabled(true);
+					}
+					if (d.getEtat() == Etat.VALIDATION_BUREAU) {
+						validateButton.setEnabled(true);
+					}
 					deleteButton.setEnabled(true);
 				} else {
 					openButton.setEnabled(false);
@@ -198,13 +194,18 @@ public class ListeDevis extends VerticalLayout {
 		List<Devis> devis = devisEJB.findDevisByFiltre(client, etat);
 
 		devisTable.removeAllItems();
+
+		mapsDevis = new HashMap<Integer, Devis>();
+		int i = 1;
 		for (Devis d : devis) {
-			Object newItemId = devisTable.addItem();
-			Item row1 = devisTable.getItem(newItemId);
+			mapsDevis.put(i, d);
+			Object newItemId = devisTable.addItem(i);
+			Item row1 = devisTable.getItem(i);
 			row1.getItemProperty("Ref").setValue(d.getRef());
 			row1.getItemProperty("Client").setValue(d.getProjet().getClient());
 			row1.getItemProperty("Etat").setValue(d.getEtat().toString());
 			row1.getItemProperty("Date").setValue(d.getDateCreation());
+			i++;
 		}
 	}
 }

@@ -77,7 +77,7 @@ public class EditionComposant extends VerticalLayout {
 				Quantite_Composant_Module quantitecomposant = maps.get(index);
 				module.getComposants().remove(quantitecomposant);
 				moduleEJB.deleteComposant(quantitecomposant);				
-				Notification.show("Supprimer un Composant",
+				Notification.show("Votre composant a été supprimé",
 						Type.TRAY_NOTIFICATION);
 				refreshTable();
 			}
