@@ -8,9 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries(value = {
+		@NamedQuery(name = "piece.findAll", query = "Select c from Piece c"),
+		@NamedQuery(name = "piece.findByProjet", query ="Select c from Piece c where c.projet = ?1"),
+}
+)
 public class Piece {
 
 	@Id

@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
+import com.example.cesijeujura.Entities.Devis;
 import com.example.cesijeujura.Entities.Module;
 import com.example.cesijeujura.Entities.Piece;
+import com.example.cesijeujura.Entities.Projet;
 import com.example.cesijeujura.IDAO.PieceIDAO;
 
 public class PieceDAO implements PieceIDAO{
@@ -43,9 +46,17 @@ public class PieceDAO implements PieceIDAO{
 	@Override
 	public List<Piece> findAllType_Piece() {
 		// TODO Auto-generated method stub
-		return null;
+		return em.createNamedQuery("piece.findAll", Piece.class)
+				.getResultList();
 	}
 	
+	public List<Piece> findByProjet(Projet projet){
+		
+		TypedQuery<Piece> query = em.createNamedQuery("piece.findByProjet", Piece.class);
+		query.setParameter(1, projet);
+		return query.getResultList();
+		
+	}
 	
 
 }

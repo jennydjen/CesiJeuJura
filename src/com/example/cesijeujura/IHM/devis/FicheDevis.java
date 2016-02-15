@@ -10,6 +10,7 @@ import org.openqa.selenium.remote.server.handler.RefreshPage;
 
 import com.example.cesijeujura.EJB.ClientEJB;
 import com.example.cesijeujura.EJB.DevisEJB;
+import com.example.cesijeujura.EJB.PieceEJB;
 import com.example.cesijeujura.EJB.Type_PieceEJB;
 import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.Entities.Devis;
@@ -99,7 +100,7 @@ public class FicheDevis extends VerticalLayout {
 		projet = devis.getProjet();
 		client = projet.getClient();
 		
-		projectName.setEnabled(false);
+		projectName.setEnabled(true);
 		projectName.setValue(projet.getNom());
 		clientNum.setEnabled(false);
 		clientNum.setValue(client.getRef());
@@ -139,7 +140,7 @@ public class FicheDevis extends VerticalLayout {
 						pieceAdd.setSurface((int) itemTemp.getItemProperty("Surface").getValue());
 						pieceAdd.setNbFenetre((int) itemTemp.getItemProperty("Nb Fenetres").getValue());
 						pieceAdd.setNbPorte((int) itemTemp.getItemProperty("Nb Portes").getValue());
-						pieceAdd.setFinition("vide");
+						pieceAdd.setFinition((String) itemTemp.getItemProperty("Finition").getValue());
 						pieceAdd.setForme("triangle");
 						pieceAdd.setNumEtage(1);
 						
@@ -150,7 +151,7 @@ public class FicheDevis extends VerticalLayout {
 					
 				}
 				
-				generateTable(devisEJB, id);
+				generateTable(devisEJB, id,pieceEJB);
 			}
 		});
 		
@@ -183,7 +184,7 @@ public class FicheDevis extends VerticalLayout {
 		tabItem.setSelectable(true);
 		//tabItem.setEditable(true);
 		tabItem.addContainerProperty("Type de pièces", String.class, "");
-		tabItem.addContainerProperty("Nom", String.class, "");
+		tabItem.addContainerProperty("Finition", String.class, "");
 		tabItem.addContainerProperty("Réference", String.class, "");
 		tabItem.addContainerProperty("Surface", Integer.class, 0);
 		tabItem.addContainerProperty("Nb Portes", Integer.class, 0);
@@ -191,7 +192,7 @@ public class FicheDevis extends VerticalLayout {
 		tabItem.addContainerProperty("Prix", String.class, "");
 		
 		
-		generateTable(devisEJB, id);
+		generateTable(devisEJB, id,pieceEJB);
 		
 		btnAjout.addClickListener(new Button.ClickListener() {
 			
@@ -243,12 +244,15 @@ public class FicheDevis extends VerticalLayout {
 	}
 
 
-	private void generateTable(DevisIEJB devisEJB, int id) {
+	private void generateTable(DevisIEJB devisEJB, int id,PieceIEJB pieceEJB) {
+		tabItem.removeAllItems();
+		
 		Devis devis = devisEJB.find(id);
 		
 		projet = devis.getProjet();
-		tabItem.removeAllItems();
-		List<Piece> listPiece=projet.getPieces();
+		List<Piece> listPiece=pieceEJB.findByProjet(projet);
+		
+		//projet.getPieces();
 		mapTypePiece = new HashMap<Integer, Type_Piece>();
 		mapPiece = new HashMap<Integer,Piece>();
 		idMap=1;
@@ -257,13 +261,13 @@ public class FicheDevis extends VerticalLayout {
 			Item row = tabItem.getItem(newItemId);
 			listPieceUpdate.add(idMap);
 			String nomTypePiece = piece.getType().getNom();
-			String nomPiece = nomTypePiece+" "+piece.getFinition();
+			String finition = piece.getFinition();
 			int surfPiece = piece.getSurface();
 			int nbPortePiece = piece.getNbPorte();
 			int nbFenetrePiece = piece.getNbFenetre();
 			
 			row.getItemProperty("Type de pièces").setValue(nomTypePiece);
-			row.getItemProperty("Nom").setValue(nomPiece);
+			row.getItemProperty("Finition").setValue(finition);
 			row.getItemProperty("Réference").setValue("");
 			row.getItemProperty("Surface").setValue(surfPiece);
 			row.getItemProperty("Nb Portes").setValue(nbPortePiece);
