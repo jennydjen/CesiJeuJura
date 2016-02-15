@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.example.cesijeujura.Entities.Module;
 import com.example.cesijeujura.Entities.Piece;
 import com.example.cesijeujura.IDAO.PieceIDAO;
 
@@ -16,19 +17,21 @@ public class PieceDAO implements PieceIDAO{
 	@Override
 	public Piece create(Piece t) {
 		// TODO Auto-generated method stub
+		this.em.persist(t);
 		return null;
 	}
 
 	@Override
 	public Piece update(Piece t) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		return em.merge(t);
 	}
 
 	@Override
 	public Piece find(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Piece t = this.em.find(Piece.class, id);
+		return t;
 	}
 
 	@Override

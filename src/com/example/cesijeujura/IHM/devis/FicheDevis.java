@@ -2,7 +2,11 @@ package com.example.cesijeujura.IHM.devis;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.openqa.selenium.remote.server.handler.RefreshPage;
 
 import com.example.cesijeujura.EJB.ClientEJB;
 import com.example.cesijeujura.EJB.DevisEJB;
@@ -26,6 +30,7 @@ import com.vaadin.data.Item;
 import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.HorizontalLayout;
@@ -70,40 +75,42 @@ public class FicheDevis extends VerticalLayout {
 	private Projet projet = new Projet();
 	private Client client = new Client();
 	private List<Type_Piece> listTypePiece = new ArrayList<Type_Piece>();
-	private List<Piece> listPieceAjout = new ArrayList<Piece>();
-
+	private List<Integer> listPieceUpdate = new ArrayList<Integer>();
+	private List<Integer> listPieceAjout = new ArrayList<Integer>();
+	private Map<Integer,Type_Piece> mapTypePiece;
+	private Map<Integer,Piece> mapPiece;
+	private int idMap=0;
+	
+	
 	@SuppressWarnings("unchecked")
 	public FicheDevis(DevisIEJB devisEJB,int id,Type_PieceIEJB typePieceEJB, PieceIEJB pieceEJB) {
 		Design.read(this);
-		
-		
 		
 		listTypePiece=typePieceEJB.findAllType_Piece();
 		//typePiece = new ComboBox("Piece", listTypePiece);
 		typePiece.addItems(listTypePiece);
 		//typePiece.addContainerProperty("selection", Type_Piece.class, "");
 		
-		/*for(Type_Piece piece:listTypePiece){
-			Object itemId = typePiece.addItem();
-			Item row = typePiece.getItem(itemId);
-			row.getItemProperty("selection").setValue(piece);
-			
-			//typePiece.setItemCaptionPropertyId(piece.getId());
-			//typePiece.setItemCaptionMode(ItemCaptionMode.PROPERTY);
-			//(piece, piece.getNom());
-		}*/
+		
 		
 				
 		Devis devis = devisEJB.find(id);
 	
 		projet = devis.getProjet();
 		client = projet.getClient();
-		List<Piece> listPiece=projet.getPieces();
+		
 		projectName.setEnabled(false);
 		projectName.setValue(projet.getNom());
 		clientNum.setEnabled(false);
 		clientNum.setValue(client.getRef());
 		dateLancement.setValue(devis.getDateCreation());
+		
+
+		CheckBox editable = new CheckBox("Editable", false);
+		editable.addValueChangeListener(valueChange -> // Java 8
+		tabItem.setEditable((Boolean) editable.getValue()));
+		
+		layoutGauche.addComponent(editable);
 		Button save = new Button("Enregistrer");
 		layoutGauche.addComponent(save);
 		
@@ -111,14 +118,39 @@ public class FicheDevis extends VerticalLayout {
 			
 			public void buttonClick(ClickEvent event) {
 				
-				Collection<?> tab= tabItem.getItemIds();
+				Collection<?> tab= tabItem.getItemIds();	
+				
 				for(Object item:tab){
-					tabItem.getItem(item);
+					Item itemTemp= tabItem.getItem(item);
+					Type_Piece type_piece= mapTypePiece.get(item);
+					
+					if(listPieceUpdate.contains(item)){
+						Piece pieceUp = mapPiece.get(item);
+						pieceUp.setType(type_piece);
+						pieceUp.setSurface((int) itemTemp.getItemProperty("Surface").getValue());
+						pieceUp.setNbFenetre((int) itemTemp.getItemProperty("Nb Fenetres").getValue());
+						pieceUp.setNbPorte((int) itemTemp.getItemProperty("Nb Portes").getValue());
+						pieceEJB.update(pieceUp);
+						
+					}else if(listPieceAjout.contains(item)){
+						Piece pieceAdd = new Piece();
+						pieceAdd.setProjet(projet);
+						pieceAdd.setType(type_piece);
+						pieceAdd.setSurface((int) itemTemp.getItemProperty("Surface").getValue());
+						pieceAdd.setNbFenetre((int) itemTemp.getItemProperty("Nb Fenetres").getValue());
+						pieceAdd.setNbPorte((int) itemTemp.getItemProperty("Nb Portes").getValue());
+						pieceAdd.setFinition("vide");
+						pieceAdd.setForme("triangle");
+						pieceAdd.setNumEtage(1);
+						
+						projet.getPieces().add(pieceAdd);
+						pieceEJB.create(pieceAdd);
+						mapPiece.put((int)item, pieceAdd);
+					}
+					
 				}
 				
-				// id similaire avec liste donc vérifier avec la liste pour update 
-				
-				//Liste de nouvelle entrée à insérer 
+				generateTable(devisEJB, id);
 			}
 		});
 		
@@ -149,33 +181,17 @@ public class FicheDevis extends VerticalLayout {
 		
 		tabItem.setSizeFull();
 		tabItem.setSelectable(true);
-		tabItem.setEditable(true);
+		//tabItem.setEditable(true);
 		tabItem.addContainerProperty("Type de pièces", String.class, "");
 		tabItem.addContainerProperty("Nom", String.class, "");
 		tabItem.addContainerProperty("Réference", String.class, "");
-		tabItem.addContainerProperty("Surface", String.class, "");
-		tabItem.addContainerProperty("Nb Portes", String.class, "");
-		tabItem.addContainerProperty("Nb Fenetres", String.class, "");
+		tabItem.addContainerProperty("Surface", Integer.class, 0);
+		tabItem.addContainerProperty("Nb Portes", Integer.class, 0);
+		tabItem.addContainerProperty("Nb Fenetres", Integer.class, 0);
 		tabItem.addContainerProperty("Prix", String.class, "");
 		
-		for( Piece piece: listPiece){
-			Object newItemId = tabItem.addItem();
-			Item row = tabItem.getItem(newItemId);
-			String nomTypePiece = piece.getType().getNom();
-			String nomPiece = nomTypePiece+" "+piece.getFinition();
-			String surfPiece = piece.getSurface()+" m3";
-			String nbPortePiece = piece.getNbPorte()+"";
-			String nbFenetrePiece = piece.getNbFenetre()+"";
-			
-			row.getItemProperty("Type de pièces").setValue(nomTypePiece);
-			row.getItemProperty("Nom").setValue(nomPiece);
-			row.getItemProperty("Réference").setValue("");
-			row.getItemProperty("Surface").setValue(surfPiece);
-			row.getItemProperty("Nb Portes").setValue(nbPortePiece);
-			row.getItemProperty("Nb Fenetres").setValue(nbFenetrePiece);
-			row.getItemProperty("Prix").setValue("");
-			
-		}
+		
+		generateTable(devisEJB, id);
 		
 		btnAjout.addClickListener(new Button.ClickListener() {
 			
@@ -189,14 +205,24 @@ public class FicheDevis extends VerticalLayout {
 					typePiece.getValue();
 					Notification.show(typePiece.getValue().toString()+" "+typePiece.getItem(typePiece.getValue()).toString(),
 							Type.TRAY_NOTIFICATION);
-					Piece piece = new Piece();
-					piece.setType(type_piece);
-					piece.setProjet(projet);
-				
-					Object newItemId = tabItem.addItem();
+					/*Piece piece = new Piece();
+					piece.setType(type_piece);*/
+					
+					Object newItemId = new Object();
+					try{
+						newItemId = tabItem.addItem();
+						
+					}catch(Exception e){
+						System.out.println(e.getMessage()+" "+e);
+					}
 					Item row = tabItem.getItem(newItemId);
-					String nomTypePiece = piece.getType().getNom();
+					//Item row = tabItem.getItem(idMap);
+					String nomTypePiece = type_piece.getNom();
 					row.getItemProperty("Type de pièces").setValue(nomTypePiece);
+					listPieceAjout.add(idMap);
+					mapTypePiece.put(idMap, type_piece);
+					idMap++;
+					
 					
 				}
 				
@@ -209,9 +235,44 @@ public class FicheDevis extends VerticalLayout {
 				
 				removeAllComponents();
 				addComponent(new FicheClient(devisEJB, client));
+				
 			}
 		});
 		
 		
+	}
+
+
+	private void generateTable(DevisIEJB devisEJB, int id) {
+		Devis devis = devisEJB.find(id);
+		
+		projet = devis.getProjet();
+		tabItem.removeAllItems();
+		List<Piece> listPiece=projet.getPieces();
+		mapTypePiece = new HashMap<Integer, Type_Piece>();
+		mapPiece = new HashMap<Integer,Piece>();
+		idMap=1;
+		for( Piece piece: listPiece){
+			Object newItemId = tabItem.addItem();
+			Item row = tabItem.getItem(newItemId);
+			listPieceUpdate.add(idMap);
+			String nomTypePiece = piece.getType().getNom();
+			String nomPiece = nomTypePiece+" "+piece.getFinition();
+			int surfPiece = piece.getSurface();
+			int nbPortePiece = piece.getNbPorte();
+			int nbFenetrePiece = piece.getNbFenetre();
+			
+			row.getItemProperty("Type de pièces").setValue(nomTypePiece);
+			row.getItemProperty("Nom").setValue(nomPiece);
+			row.getItemProperty("Réference").setValue("");
+			row.getItemProperty("Surface").setValue(surfPiece);
+			row.getItemProperty("Nb Portes").setValue(nbPortePiece);
+			row.getItemProperty("Nb Fenetres").setValue(nbFenetrePiece);
+			row.getItemProperty("Prix").setValue("");
+			mapTypePiece.put(idMap, piece.getType());
+			mapPiece.put(idMap, piece);
+			idMap++;
+			
+		}
 	}
 }
