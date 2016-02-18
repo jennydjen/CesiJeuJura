@@ -127,6 +127,7 @@ public class FicheDevis extends VerticalLayout {
 					
 					if(listPieceUpdate.contains(item)){
 						Piece pieceUp = mapPiece.get(item);
+						pieceUp.getProjet().setNom(projectName.getValue());
 						pieceUp.setType(type_piece);
 						pieceUp.setSurface((int) itemTemp.getItemProperty("Surface").getValue());
 						pieceUp.setNbFenetre((int) itemTemp.getItemProperty("Nb Fenetres").getValue());
@@ -135,7 +136,8 @@ public class FicheDevis extends VerticalLayout {
 						
 					}else if(listPieceAjout.contains(item)){
 						Piece pieceAdd = new Piece();
-						pieceAdd.setProjet(projet);
+						projet.setNom(projectName.getValue());
+						pieceAdd.setProjet(projet);						
 						pieceAdd.setType(type_piece);
 						pieceAdd.setSurface((int) itemTemp.getItemProperty("Surface").getValue());
 						pieceAdd.setNbFenetre((int) itemTemp.getItemProperty("Nb Fenetres").getValue());

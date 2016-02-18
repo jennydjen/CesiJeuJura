@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.Entities.Devis;
 import com.example.cesijeujura.Entities.Etat;
+import com.example.cesijeujura.Entities.Projet;
 import com.example.cesijeujura.IDAO.DevisIDAO;
 import com.example.cesijeujura.IEJB.DevisIEJB;
 
@@ -65,4 +66,13 @@ public class DevisEJB implements DevisIEJB {
 		return devisDAO.findDevisByFiltre(client, etat);
 	}
 
+	@Override
+	public void initialiseDevisTMP(Client client) {
+		devisDAO.initialiseDevisTMP(client);
+	}
+	
+	@Override
+	public List<Projet> findAllProjetByClient(Client client){
+		return devisDAO.findAllProjetByClient(client);
+	}
 }

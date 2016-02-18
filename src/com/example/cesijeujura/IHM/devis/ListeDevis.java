@@ -65,14 +65,7 @@ public class ListeDevis extends VerticalLayout {
 		Design.read(this);
 
 		this.devisEJB = devisEJB;
-		createButton.addClickListener(new Button.ClickListener() {
-
-			@Override
-			public void buttonClick(ClickEvent event) {
-				Notification.show("The button create was clicked",
-						Type.TRAY_NOTIFICATION);
-			}
-		});
+		createButton.setVisible(false);
 
 		openButton.addClickListener(new Button.ClickListener() {
 

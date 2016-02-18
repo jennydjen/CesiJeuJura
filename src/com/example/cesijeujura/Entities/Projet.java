@@ -1,7 +1,9 @@
 package com.example.cesijeujura.Entities;
 
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,9 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries(value = { @NamedQuery(name = "projet.findProjetByClient", query = "Select p from Projet p where p.client = ?1 ORDER BY p.nom") })
 public class Projet {
 
 	@Id
@@ -34,11 +39,16 @@ public class Projet {
 	private Client client;
 	@OneToMany(fetch = FetchType.EAGER,mappedBy="projet")
 	private List<Piece> pieces;
-	@OneToMany(fetch = FetchType.EAGER,mappedBy="projet")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="projet", cascade=CascadeType.ALL)
 	private List<Devis> devis;
 	
 	public Projet(){
-		
+		devis = new LinkedList<Devis>();
+		pieces = new LinkedList<Piece>();
+		com = "";
+		forme = "";
+		maquette = "";
+		ref = "";
 	}
 	
 	public int getId() {

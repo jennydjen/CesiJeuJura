@@ -45,6 +45,8 @@ public class MenuView extends VerticalLayout {
 	private Type_PieceIEJB typePieceEJB;
 	private FichierIEJB fichiersEJB;
 	private PieceIEJB pieceEJB;
+	private ClientIEJB clientEJB;
+	
 	public MenuView(final DevisIEJB devisEJB, final ClientIEJB clientEJB, final ModuleIEJB moduleEJB, final UserIEJB userEJB , final ComposantIEJB composantEJB
 			,final Type_PieceIEJB typePieceEJB,final FichierIEJB fichiersEJB, final PieceIEJB pieceEJB) {
 		Design.read(this);
@@ -52,6 +54,8 @@ public class MenuView extends VerticalLayout {
 		this.typePieceEJB = typePieceEJB;
 		this.fichiersEJB = fichiersEJB;
 		this.pieceEJB = pieceEJB;
+		this.clientEJB = clientEJB;
+		
 		MenuBar.Command clients = new Command() {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {

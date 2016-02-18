@@ -2,6 +2,7 @@ package com.example.cesijeujura.Entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,7 @@ public class Piece {
 	private String finition;
 	private int num_Etage;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="PROJET_ID")
 	private Projet projet;
 	@ManyToOne

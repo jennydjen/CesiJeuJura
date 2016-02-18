@@ -63,6 +63,9 @@ public class Devis implements Serializable {
 	}
 
 	public String getRef() {
+		if(ref == null || ref.isEmpty()){
+			return ""+ getId();
+		}
 		return ref;
 	}
 

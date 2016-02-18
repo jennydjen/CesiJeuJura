@@ -59,8 +59,8 @@ public class FicheClient extends VerticalLayout {
 	protected HorizontalLayout buttonLayout;
 	protected Button seeDevisButton;
 	private Map<Integer, Projet> mapsProjets;
-
-	public FicheClient(DevisIEJB devisEJB, Client client) {
+		
+	public FicheClient(final DevisIEJB devisEJB, final Client client) {
 		Design.read(this);
 
 		seeDevisButton.setEnabled(false);
@@ -112,7 +112,7 @@ public class FicheClient extends VerticalLayout {
 		
 		mapsProjets = new HashMap<Integer, Projet>();
 		int i = 1;
-		for(Projet p : client.getProjets()){
+		for(Projet p : devisEJB.findAllProjetByClient(client)){
 			mapsProjets.put(i, p);
 			Devis devis = null;
 			Date dateMax = null;
@@ -145,5 +145,17 @@ public class FicheClient extends VerticalLayout {
 		});
 		
 		projectTable.setHeight(200, Unit.PIXELS);
+		
+		Button buttonCreateProject = new Button("Créer un projet");
+		buttonCreateProject.addClickListener(new Button.ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				devisEJB.initialiseDevisTMP(client);
+				CesijeujuraUI.getInstanceMenuView().afficherFicheDevis(0);
+			}
+		});
+				
+		buttonLayout.addComponent(buttonCreateProject);
 	}
 }

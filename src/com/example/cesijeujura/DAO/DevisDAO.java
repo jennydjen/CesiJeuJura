@@ -10,12 +10,15 @@ import javax.persistence.TypedQuery;
 import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.Entities.Devis;
 import com.example.cesijeujura.Entities.Etat;
+import com.example.cesijeujura.Entities.Projet;
 import com.example.cesijeujura.IDAO.DevisIDAO;
 
 public class DevisDAO implements DevisIDAO {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	private Devis devisTMP;
 
 	@Override
 	public Devis create(Devis t) {
@@ -32,6 +35,9 @@ public class DevisDAO implements DevisIDAO {
 
 	@Override
 	public Devis find(int id) {
+		if(id == 0){			
+			return devisTMP;
+		}
 		// TODO Auto-generated method stub
 		Devis t = this.em.find(Devis.class, id);
 		return t;
@@ -99,5 +105,24 @@ public class DevisDAO implements DevisIDAO {
 		}
 
 		return result;
+	}
+	
+	@Override
+	public void initialiseDevisTMP(Client client) {
+		devisTMP = new Devis();
+		devisTMP.setEtat(Etat.CREER);
+		devisTMP.setPrix(0.0);
+		devisTMP.setRef("");
+		devisTMP.setProjet(new Projet());
+		devisTMP.getProjet().getDevis().add(devisTMP);
+		devisTMP.getProjet().setClient(client);
+	}
+	
+	@Override
+	public List<Projet> findAllProjetByClient(Client client){
+		TypedQuery<Projet> query = em.createNamedQuery("projet.findProjetByClient", Projet.class);
+		query.setParameter(1, client);
+
+		return query.getResultList();
 	}
 }
