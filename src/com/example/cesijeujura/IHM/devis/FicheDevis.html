@@ -25,7 +25,18 @@
      </vaadin-horizontal-layout> 
     </vaadin-vertical-layout> 
     <vaadin-vertical-layout spacing="true" size-auto="true" margin="true" _id="layoutDroit"> 
-     <vaadin-menu-bar caption="Etat projet" plain-text="" _id="etatProjet"></vaadin-menu-bar> 
+    <vaadin-horizontal-layout _id="layoutBtnEtat"> 
+      <vaadin-button plain-text="" _id="btnProjet">
+        Projet 
+      </vaadin-button> 
+      <vaadin-button plain-text="" _id="btnPreDev">
+        Pre-Devis 
+      </vaadin-button> 
+      <vaadin-button plain-text="" _id="btnDevis">
+        Devis 
+      </vaadin-button> 
+     </vaadin-horizontal-layout> 
+      
      <vaadin-date-field caption="Date lancement du projet" _id="dateLancement" :right=""></vaadin-date-field> 
      <vaadin-date-field caption="Date Pré-devis" _id="datePreDevis" :right=""></vaadin-date-field> 
      <vaadin-date-field caption="Date devis" _id="dateDevis" :right=""></vaadin-date-field> 

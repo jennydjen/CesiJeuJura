@@ -65,10 +65,13 @@ public class FicheDevis extends VerticalLayout {
 	protected HorizontalLayout layoutAjout;
 	protected ComboBox typePiece;
 	protected Button btnAjout;
+	protected Button btnProjet;
+	protected Button btnPreDev;
+	protected Button btnDevis;
+	protected HorizontalLayout layoutBtnEtat;
 	protected HorizontalLayout layoutTableau;
 	protected Table tabItem;
 	protected VerticalLayout layoutDroit;
-	protected MenuBar etatProjet;
 	protected DateField dateLancement;
 	protected DateField datePreDevis;
 	protected DateField dateDevis;
@@ -92,8 +95,6 @@ public class FicheDevis extends VerticalLayout {
 		typePiece.addItems(listTypePiece);
 		//typePiece.addContainerProperty("selection", Type_Piece.class, "");
 		
-		
-		
 				
 		Devis devis = devisEJB.find(id);
 	
@@ -106,7 +107,6 @@ public class FicheDevis extends VerticalLayout {
 		clientNum.setValue(client.getRef());
 		dateLancement.setValue(devis.getDateCreation());
 		
-
 		CheckBox editable = new CheckBox("Editable", false);
 		editable.addValueChangeListener(valueChange -> // Java 8
 		tabItem.setEditable((Boolean) editable.getValue()));
@@ -114,6 +114,55 @@ public class FicheDevis extends VerticalLayout {
 		layoutGauche.addComponent(editable);
 		Button save = new Button("Enregistrer");
 		layoutGauche.addComponent(save);
+		Etat etat = devis.getEtat();
+		
+		
+		if(Etat.CREER == etat){
+			btnProjet.setEnabled(false);
+		}
+		if(Etat.A_TRAITER == etat){
+			btnPreDev.setEnabled(false);
+		}
+		if(Etat.DEVIS == etat){
+			btnDevis.setEnabled(false);
+		}
+		btnProjet.addClickListener(new Button.ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+				devis.setEtat(Etat.CREER);
+				btnProjet.setEnabled(false);
+				btnPreDev.setEnabled(true);
+				btnDevis.setEnabled(true);
+			}
+		});
+		
+		btnPreDev.addClickListener(new Button.ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+				devis.setEtat(Etat.A_TRAITER);
+				btnProjet.setEnabled(true);
+				btnPreDev.setEnabled(false);
+				btnDevis.setEnabled(true);
+				
+			}
+		});
+		
+		btnDevis.addClickListener(new Button.ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+				devis.setEtat(Etat.DEVIS);
+				btnProjet.setEnabled(true);
+				btnPreDev.setEnabled(true);
+				btnDevis.setEnabled(false);
+				
+			}
+		});
 		
 		save.addClickListener(new Button.ClickListener() {
 			
@@ -156,7 +205,7 @@ public class FicheDevis extends VerticalLayout {
 				generateTable(devisEJB, id,pieceEJB);
 			}
 		});
-		
+		/*
 		MenuBar.Command btnprojet = new Command() {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
@@ -177,10 +226,10 @@ public class FicheDevis extends VerticalLayout {
 				devis.setEtat(Etat.DEVIS);
 			}
 		};
-	
+	/*
 		etatProjet.addItem("Projet", btnprojet);
 		etatProjet.addItem("Pré-devis", predevis);
-		etatProjet.addItem("Devis", etatdevis);
+		etatProjet.addItem("Devis", etatdevis);*/
 		
 		tabItem.setSizeFull();
 		tabItem.setSelectable(true);
