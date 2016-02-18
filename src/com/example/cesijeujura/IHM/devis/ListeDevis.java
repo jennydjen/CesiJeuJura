@@ -92,8 +92,13 @@ public class ListeDevis extends VerticalLayout {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				Notification.show("The button validate was clicked",
-						Type.TRAY_NOTIFICATION);
+				Devis devis = mapsDevis.get((Integer) devisTable.getValue());
+				devis.setEtat(Etat.DEVIS);				
+				devisEJB.update(devis);
+				
+				initialiseDevis();
+				
+				Notification.show("Le devis vient d'être accepté par le client", Type.TRAY_NOTIFICATION);
 			}
 		});
 
