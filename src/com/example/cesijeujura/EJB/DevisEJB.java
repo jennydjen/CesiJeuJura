@@ -9,6 +9,7 @@ import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.Entities.Devis;
 import com.example.cesijeujura.Entities.Etat;
 import com.example.cesijeujura.Entities.Projet;
+import com.example.cesijeujura.Entities.Utilisateur;
 import com.example.cesijeujura.IDAO.DevisIDAO;
 import com.example.cesijeujura.IEJB.DevisIEJB;
 
@@ -67,12 +68,12 @@ public class DevisEJB implements DevisIEJB {
 	}
 
 	@Override
-	public void initialiseDevisTMP(Client client) {
-		devisDAO.initialiseDevisTMP(client);
+	public void initialiseDevisTMP(Client client, Utilisateur user) {
+		devisDAO.initialiseDevisTMP(client, user);
 	}
-	
+
 	@Override
-	public List<Projet> findAllProjetByClient(Client client){
+	public List<Projet> findAllProjetByClient(Client client) {
 		return devisDAO.findAllProjetByClient(client);
 	}
 }

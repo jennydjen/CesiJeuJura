@@ -11,6 +11,7 @@ import com.example.cesijeujura.Entities.Client;
 import com.example.cesijeujura.Entities.Devis;
 import com.example.cesijeujura.Entities.Etat;
 import com.example.cesijeujura.Entities.Projet;
+import com.example.cesijeujura.Entities.Utilisateur;
 import com.example.cesijeujura.IDAO.DevisIDAO;
 
 public class DevisDAO implements DevisIDAO {
@@ -108,7 +109,7 @@ public class DevisDAO implements DevisIDAO {
 	}
 	
 	@Override
-	public void initialiseDevisTMP(Client client) {
+	public void initialiseDevisTMP(Client client, Utilisateur user) {
 		devisTMP = new Devis();
 		devisTMP.setEtat(Etat.CREER);
 		devisTMP.setPrix(0.0);
@@ -116,6 +117,7 @@ public class DevisDAO implements DevisIDAO {
 		devisTMP.setProjet(new Projet());
 		devisTMP.getProjet().getDevis().add(devisTMP);
 		devisTMP.getProjet().setClient(client);
+		devisTMP.getProjet().setCommercial(user);
 	}
 	
 	@Override
